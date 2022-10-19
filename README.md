@@ -10,14 +10,14 @@ Esa semana también tenemos examen
 - interfaz para poder ejecutar main
 - cifrado de jsons + datos personales + contraseñas
 -----------------------------------------------------
-##Clases
+## Clases
 - Profesores
 - Aulas para cada asignatura
 - Alumnos
 - Archivo tipo examen
 - Archivo tipo solución de examen
 
-##Profesores
+## Profesores
 - Datos personales
 - Nombre de usuario y contraseña
 - Clases que imparten
@@ -26,7 +26,7 @@ Esa semana también tenemos examen
 - Subir solución
 - Cambiar datos
 
-##Alumnos
+## Alumnos
 - Clases a las que asisten
 - Datos personales
 - Nombre de usuario y contraseña
@@ -35,13 +35,13 @@ Esa semana también tenemos examen
 - Pedir revisión
 - Generador de nia
 
-##MAIN
+## MAIN
 1. Loggearse 
 2. Según el usuario que se haya metido, habrá una sección de clases y otra de revisiones
 3. En cada sección habrá un botón OPERACIONES donde se podrán ejecutar los métodos de la clase de python
 
 ---------------------------------------------------------
-#NOTAS
+# NOTAS
 Para ver cualquier json, pedimos al alumno el nia
 
 MEMORIA
