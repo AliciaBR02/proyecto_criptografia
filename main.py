@@ -68,19 +68,21 @@ def hmac_md5(key, msg):
     return hmac.HMAC(key, msg, md5)
 
 #key2 = fernet.generate_key()
-salt = b'1234567890123456'
+# generar salt aleatorio
+
+
+salt = b'1234567890123456' # tiene que ser aleatorio para cada usuario
 password = "contraseña"
-hashed_key = Scrypt(salt=salt, length=32, n=2**14, r=8, p=1, backend=default_backend()).derive(password.encode())
+# esto nos hace bien el hash
+hashed_key = hmac.new(key=salt, msg=password.encode(), digestmod=md5).hexdigest()
+print("HI HELLOE: ", hashed_key)
 # hash the key with cryptography library
 
-hashed = hmac_md5(key, password.encode('utf-8')).hexdigest()
 
-# hash key with salt
-hashed2 = hmac_md5(hashed_key, password.encode('utf-8')).hexdigest()
-
-print("Hashed key: ", hashed2)
+print("Hashed key: ", hashed_key)
 with open('hashed.txt','w') as file:
-    file.write(hashed2)
+    file.write(hashed_key)
+
 
 # from hash to key
 with open('hashed.txt','r') as file:
@@ -88,41 +90,10 @@ with open('hashed.txt','r') as file:
       print("Hashed key: ", hashed)
       key = hashed.encode('utf-8')
       print("Key: ", key)
-      # with open('nota.json','rb') as file:
-      #    data = file.read()
-      #    print("Data: ", data)
-      #    encrypted = fernet.encrypt(data)
-      #    print("Encrypted data: ", encrypted)
-      #    with open('encrypt.txt','wb') as f:
-      #          f.write(encrypted)
-      # with open('encrypt.txt', 'rb') as enc_file:
-      #    encrypted = enc_file.read()
-      #    print("Encrypted data: ", encrypted)
-      #    # decrypting the file
-      #    decrypted = fernet.decrypt(encrypted)
-      #    print("Decrypted data: ", decrypted)
-      #    # opening the file in write mode and writing the decrypted data
-      #    with open('decrypt.json', 'wb') as dec_file:
-      #          dec_file.write(decrypted)
-      #    with open('decrypt.json','rb') as file:
-      #          decrypted = file.read()
-      #          print("Decrypted data: ", decrypted.decode('utf-8'))
-               # print("Decrypted data: ", json.loads(decrypted.decode('utf-8').replace("'", '"')))
-               # print("Decrypted data: ", json.loads(decrypted.decode('utf-8').replace("'", '"'))["nota"])
-               # print("Decrypted data: ", json.loads(decrypted.decode('utf-8').replace("'", '"'))["nota"]["titulo"])
-               # print("Decrypted data: ", json.loads(decrypted.decode('utf-8').replace("'", '"'))["nota"]["texto"])
-               # print("Decrypted data: ", json.loads(decrypted.decode('utf-8').replace("'", '"'))["nota"]["fecha"])
-               # print("Decrypted data: ", json.loads(decrypted.decode('utf-8').replace("'", '"'))["nota"]["autor"])
-               # print("Decrypted data: ", json.loads(decrypted.decode('utf-8').replace("'", '"'))["nota"]["tags"])
-               # print("Decrypted data: ", json.loads(decrypted.decode('utf-8').replace("'", '"'))["nota"]["tags"][0])
-               # print("Decrypted data: ", json.loads(decrypted.decode('utf-8').replace("'", '"'))["nota"]["tags"][1])
-
-# hash key with Fernet library
-# fernet2 = Fernet(key2)
-# hashed2 = fernet2.__hash__()
-#with open('hashed.txt', 'wb') as file:
-#   file.write(hashed2)
-# print the hashed message
-#with open('hashed.txt', 'rb') as file:
-#   hashed_file = file.read()
-#   print(hashed_file)
+      
+try1 = input("Introduce la contraseña: ")
+h1 = hmac.new(key=salt, msg=try1.encode(), digestmod=md5).hexdigest()
+if (try1 != password):
+   print("OLA K ASE") #funsiona porque el hash es distinto
+else:
+   print("MISMA CONTRASEÑA NINIO")
