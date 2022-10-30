@@ -1,0 +1,16 @@
+[
+    {
+        "subject": "Matem\u00e1ticas",
+        "email": "hola@email.com",
+        "exam": "exam",
+        "_marks": [
+            10
+        ]
+    },
+    {
+        "subject": "Matem\u00e1ticas",
+        "email": "hola@email.com",
+        "exam": "exam",
+        "_marks": 10
+    }
+]

@@ -1,0 +1,182 @@
+[
+    {
+        "name": "John",
+        "surname": "Doe",
+        "email": "ola@quetal.com",
+        "password": "123456",
+        "subjects": [],
+        "hash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
+    },
+    {
+        "name": "John",
+        "surname": "Doe",
+        "email": "ola@quetal.com",
+        "password": "123456",
+        "subjects": [],
+        "hash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
+    },
+    {
+        "name": "John",
+        "surname": "Doe",
+        "email": "ola@quetal.com",
+        "password": "123456",
+        "subjects": [],
+        "hash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
+    },
+    {
+        "name": "John",
+        "surname": "Doe",
+        "email": "ola@quetal.com",
+        "password": "123456",
+        "subjects": [],
+        "hash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
+    },
+    {
+        "name": "John",
+        "surname": "Doe",
+        "email": "ola@quetal.com",
+        "password": "123456",
+        "subjects": [],
+        "hash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
+    },
+    {
+        "name": "John",
+        "surname": "Doe",
+        "email": "ola@quetal.com",
+        "password": "",
+        "subjects": [],
+        "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+        "name": "John",
+        "surname": "Doe",
+        "email": "ola@quetal.com",
+        "password": "",
+        "subjects": [],
+        "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+        "name": "John",
+        "surname": "Doe",
+        "email": "ola@quetal.com",
+        "password": "",
+        "subjects": [],
+        "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+        "name": "John",
+        "surname": "Doe",
+        "email": "ola@quetal.com",
+        "password": "",
+        "subjects": [],
+        "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+        "name": "",
+        "surname": "",
+        "email": "",
+        "password": "",
+        "subjects": [],
+        "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+        "name": "Joe",
+        "surname": "Doe",
+        "email": "hola@email.com",
+        "password": "alicia123",
+        "subjects": [],
+        "hash": "41b664c1b75a483818ab29afcdf52e32243adb6680ddb6ab1b4b6a67fa5d8571"
+    },
+    {
+        "name": "Joe",
+        "surname": "Doe",
+        "email": "hola@email.com",
+        "password": "aliciahjdgkjr",
+        "subjects": [],
+        "hash": "1fa1ff440172ca5236f0dfc92317c54420564075bb8998d4ea8cbc85d42a7a61"
+    },
+    {
+        "name": "Joe",
+        "surname": "Doe",
+        "email": "hola@email.com",
+        "password": "T9dbfjbfjbj@",
+        "subjects": [],
+        "hash": "e8d712e1895999b36cf6ad8c77a12f857871202c7480cd7ed8e6d2080acedf7e"
+    },
+    {
+        "name": "Joe",
+        "surname": "Doe",
+        "email": "hola@email.com",
+        "password": "T9dbfjbfjbj@",
+        "subjects": [],
+        "hash": "e8d712e1895999b36cf6ad8c77a12f857871202c7480cd7ed8e6d2080acedf7e"
+    },
+    {
+        "name": "Joe",
+        "surname": "Doe",
+        "email": "hola@email.com",
+        "password": "T9dbfjbfjbj@",
+        "subjects": [],
+        "hash": "e8d712e1895999b36cf6ad8c77a12f857871202c7480cd7ed8e6d2080acedf7e"
+    },
+    {
+        "name": "Joe",
+        "surname": "Doe",
+        "email": "hola@email.com",
+        "password": "T9dbfjbfjbj@",
+        "subjects": [],
+        "hash": "e8d712e1895999b36cf6ad8c77a12f857871202c7480cd7ed8e6d2080acedf7e"
+    },
+    {
+        "name": "Joe",
+        "surname": "Doe",
+        "email": "hola@email.com",
+        "password": "T9dbfjbfjbj@",
+        "subjects": [],
+        "hash": "e8d712e1895999b36cf6ad8c77a12f857871202c7480cd7ed8e6d2080acedf7e"
+    },
+    {
+        "name": "Joe",
+        "surname": "Doe",
+        "email": "hola@email.com",
+        "password": "T9dbfjbfjbj@",
+        "subjects": [],
+        "hash": "e8d712e1895999b36cf6ad8c77a12f857871202c7480cd7ed8e6d2080acedf7e"
+    },
+    {
+        "name": "Joe",
+        "surname": "Doe",
+        "email": "hola@email.com",
+        "password": "T9dbfjbfjbj@",
+        "subjects": [],
+        "hash": "e8d712e1895999b36cf6ad8c77a12f857871202c7480cd7ed8e6d2080acedf7e"
+    },
+    {
+        "name": "Joe",
+        "surname": "Doe",
+        "email": "hola@email.com",
+        "password": "T9dbfjbfjbj@",
+        "subjects": [],
+        "hash": "e8d712e1895999b36cf6ad8c77a12f857871202c7480cd7ed8e6d2080acedf7e"
+    },
+    {
+        "name": "Joe",
+        "surname": "Doe",
+        "email": "hola@email.com",
+        "password": "T9dbfjbfjbj@",
+        "subjects": [],
+        "hash": "e8d712e1895999b36cf6ad8c77a12f857871202c7480cd7ed8e6d2080acedf7e"
+    },
+    {
+        "name": "Joe",
+        "surname": "Doe",
+        "email": "d@email.com",
+        "password": "T9dbfjbfjbj@",
+        "subjects": [
+            "Matem\u00e1ticas",
+            "F\u00edsica",
+            "Qu\u00edmica"
+        ],
+        "hash": "e8d712e1895999b36cf6ad8c77a12f857871202c7480cd7ed8e6d2080acedf7e"
+    }
+]
