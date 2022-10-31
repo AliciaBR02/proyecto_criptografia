@@ -25,7 +25,7 @@ class Registration:
         self.register_student()
         
     def load_data(self):
-        self.data = json_manager.JsonManager("students_database").data
+        self.data = json_manager.JsonManager("database/students_database.json").data
     def register_student(self):
         # check if the email is already registered
         for i in range(len(self.data)):
@@ -61,6 +61,6 @@ class Registration:
     def password(self, value):
         self._password = value
 
-# s = Registration("Joe", "Doe", "d@email.com", "T9dbfjbfjbj@", ["Matemáticas", "Física", "Deutsch"])
+s = Registration("Joe", "Doe", "d@emdail.com", "T9dbfjbfjbj@", ["Matemáticas", "Física", "Química"])
 # s = user_reg.Student("Joe", "Doe", "ola@quetal.com", "123456")
 # s.login()

@@ -1,24 +1,30 @@
 """This file will contain the functions to register a new user and to login an existing user"""
 import hashlib
 import json_manager
-
+import os
+from password import Password
 
 class Student:
     def __init__(self, name, surname, email, password, subjects):
         self.name = name
         self.surname = surname
         self.email = email
-        self.password = password
+        self.__password = password
         self.subjects = subjects
         # self.json_file = "students_database.json"
-        self.hash = hashlib.sha256(password.encode()).hexdigest()
-        # salt = b'1234567890123456' # tiene que ser aleatorio para cada usuario
+        self.salt = os.urandom(16)
+        self.hash = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), self.salt, 100000)
+        # self.hash = hashlib.sha512(password.encode()).hexdigest()
     
-    
+    def save_secure_password(self):
+        password = Password(self.__password)
+        database = json_manager.JsonManager('database/secure_passwords.json')
+        database.add_item([self.hash, self.salt])
     
     
     def register(self):
         database = json_manager.JsonManager('database/students_database.json')
+        print(self)
         database.add_item(self)
         print("User registered successfully")
             
@@ -31,7 +37,7 @@ class Student:
             data = file.read()
         if email in data:
             # Check if the password is correct
-            hash = hashlib.sha256(password.encode()).hexdigest()
+            hash = hashlib.sha512(password.encode()).hexdigest()
             if hash in data:
                 # Print a success message
                 print('User logged in successfully')
