@@ -1,6 +1,7 @@
 """"""
 from json_manager import JsonManager
 import student
+from encryptation import Encryptation
 
 class Login:
     def __init__(self, email, password):
@@ -13,9 +14,10 @@ class Login:
     def load_data(self):
         self._data = JsonManager("students_database").data
         
-    def login_student(self):
-        s = student.Student.login(self._email, self._password)
+    # def login_student(self):
+    #     s = student.Student.login(self._email, self._password)
         
+    
                 
 
 # student = Login("ola@qugdagetal.com", "123456")
