@@ -8,6 +8,7 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.fernet import Fernet
 import hmac
 from hashlib import md5
+import json
 from json_manager import JsonManager
 
 class Encryptation:
@@ -20,17 +21,34 @@ class Encryptation:
         key = self.key
         f = Fernet(key)
         self.encrypted = f.encrypt(message.encode('utf-8')).decode('utf-8')
-        self.key = self.key.decode('utf-8')
+        self.key = key.decode('utf-8')
         JsonManager(path).add_item(self)
         return self.encrypted
     
     def decrypt(self, encrypted, path):
+        # print(encrypted)
+        #look inside the file for the key
         with open(path,'rb') as file:
-            key = file.read()
+            data = file.read()
+        data = data.decode('utf-8')
+        # convert the string to a dictionary
+        res = json.loads(data)
+        key = ''
+        # dec_encrypted = encrypted.decode('utf-8')
+        # print(dec_encrypted)
+        for dic in res:
+            # print(dic["encrypted"])
+            if dic["encrypted"] == encrypted:
+                key = dic["key"]
+                # print(key)
+                # print("y")
+                
+        if key == "":
+            return "key not found"
         f = Fernet(key)
-        print(encrypted)
-        decrypted = f.decrypt(encrypted).decode('utf-8')
-        return decrypted
+        # print(encrypted)
+        decrypted = f.decrypt(encrypted.encode('utf-8'))
+        return decrypted.decode('utf-8')
     
 
 # e = Encryptation()

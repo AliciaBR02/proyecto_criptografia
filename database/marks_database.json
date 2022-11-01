@@ -1,8 +1,26 @@
 [
     {
         "subject": "Matem\u00e1ticas",
-        "email": "gAAAAABjYReNuxzsDswk8ai1R7GmzfxXTgcrvwuLz7siyF1VsNmoKzGBC_FLX8mCbnxGRejOMDXTlBTCjLuRF_pI0DpM8KnclQ==",
+        "email": "gAAAAABjYVTfl-zTvXXE-4Q1WCcrp8MIxK3GiVnyPxVEEDW0_0mx-KCbNJz5EIYZxRi_7skrklVcoGh5KzmiaWHWOqOiY1ncAQ==",
         "exam": "exam",
-        "mark": "gAAAAABjYReNKHdeD72oMxY5LDUpt5eDQTE06MPSI__tRIEmp50Z_n6dL-PTo-ZK4bv-JqU7wjXcBnN1H53aF8rf6w_5Iiig1w=="
+        "mark": "gAAAAABjYVTf4Rqbar4VhbktN_r8SckKpdb9XcMq3Rfml_EDBLJhOtcfWkU2gI6edF8S0099wKQVDRREHg_H7dGB-Ari0AYSNw=="
+    },
+    {
+        "subject": "F\u00edsica",
+        "email": "gAAAAABjYVWdz5HWNZvcBaqezdAie03Y_fjhrgQpugJaW_e_axNNRMOicW3HI5XufeYfsOD5ab7Rn6I_JWbasOx6K6t1vt-wEg==",
+        "exam": "Parcial 1",
+        "mark": "gAAAAABjYVWdByATRSbAClkDu4cgv-gcbLMM3-Azn0IZpPJZ871y1DFMDsOq_o2r7OOK8pbaugUCcRIWoy49KA5HVuf53sLR-Q=="
+    },
+    {
+        "subject": "Qu\u00edmica",
+        "email": "gAAAAABjYVWdnoSrkorarXDtAFyFvA0pTMwoyCtjFhlye-CoFPhdJfYXYTF9_4T6AVJWJ63jpe6UOQ-GCdZJ-mXLpHJ--Vmxpg==",
+        "exam": "Parcial 1",
+        "mark": "gAAAAABjYVWd3zMxNZgoLW7atFLGy-x5PPfOBci5l0yItAppT9jTAExBqGn9JK7EssrKy5L9c5PKlt0wtV5B87n3uU4TUIMCdg=="
+    },
+    {
+        "subject": "Lengua",
+        "email": "gAAAAABjYVWdYApb8yHd8EAN6tluUU3Fr5YAkyUQfvgyYwuDjWq3T5l3SNIuScyGxCGyGsdX0CQFKaIme7yHMvcfLQdNZ9Y2vA==",
+        "exam": "Parcial 1",
+        "mark": "gAAAAABjYVWd00a814fTgqGpLdqvvczgRaxlkUkyoW1t6mG4HZ9CMCS4gPRWWv9_BLcYlBEia4W1FbYAhKB8rUn2ILzHgLFgSw=="
     }
 ]
