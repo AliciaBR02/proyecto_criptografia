@@ -49,9 +49,9 @@ class MarksManager:
     
     
 
-mark_manager = MarksManager()
-mark_manager.add_mark("hola@email.com","Física", "Parcial 1", 3)
-mark_manager.add_mark("hola@email.com", "Química", "Parcial 1", 9)
-mark_manager.add_mark("hola@email.com", "Lengua", "Parcial 1", 5)
-result = mark_manager.get_marks("hola@email.com")
-print("OUR RESULT: ", result)
+# mark_manager = MarksManager()
+# mark_manager.add_mark("hola@email.com","Física", "Parcial 1", 3)
+# mark_manager.add_mark("hola@email.com", "Química", "Parcial 1", 9)
+# mark_manager.add_mark("hola@email.com", "Lengua", "Parcial 1", 5)
+# result = mark_manager.get_marks("hola@email.com")
+# print("OUR RESULT: ", result)

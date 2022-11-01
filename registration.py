@@ -37,7 +37,6 @@ class Registration:
         st = student.Student(self.name, self.surname, self.email, self.password, self.subject_list)
         st.register()
     
-
 s = Registration("Joe", "Doe", "d@emdail.com", "T9dbfjbfjbj@", ["Matemáticas", "Física", "Química"])
 # s = user_reg.Student("Joe", "Doe", "ola@quetal.com", "123456")
 # s.login()

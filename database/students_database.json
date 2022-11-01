@@ -1,1 +1,63 @@
-[]
+[
+    {
+        "name": "Pepe",
+        "surname": "Perez",
+        "email": "hola@isaac.agresivo",
+        "password": "3afbe0fe524c49fbb56f6fbb104ee7f0f882605263758d3f4b3a0d4ec70ec078",
+        "subjects": [
+            "Matem\u00e1ticas",
+            "F\u00edsica"
+        ]
+    },
+    {
+        "name": "Pepe",
+        "surname": "Perez",
+        "email": "hola@isaac.agresivo",
+        "password": "190d7d85b7ea6cfb5bd53b00cc26238e6909913bcd6fdcece97606248852b3e2",
+        "subjects": [
+            "Matem\u00e1ticas",
+            "F\u00edsica"
+        ]
+    },
+    {
+        "name": "Pepe",
+        "surname": "Perez",
+        "email": "hola@isaac.agresivo",
+        "password": "9e68d7309667c4eacbcee5980f5b58d7211b8fad1d6104a9be2dfc3958501c88",
+        "subjects": [
+            "Matem\u00e1ticas",
+            "F\u00edsica"
+        ]
+    },
+    {
+        "name": "Pepe",
+        "surname": "Perez",
+        "email": "hola@isaac.agresivo",
+        "password": "cf0d9810e4238c0c968b9594aaa6b2f97581ddd65c02a55309007e6a4f938ff2",
+        "subjects": [
+            "Matem\u00e1ticas",
+            "F\u00edsica"
+        ]
+    },
+    {
+        "name": "Pepe",
+        "surname": "Perez",
+        "email": "hola@isaac.agresivo",
+        "password": "ed6566abd8b2b96aa21ad52cc00ed46a401e89bc2531359f09e94d2a16493da7",
+        "subjects": [
+            "Matem\u00e1ticas",
+            "F\u00edsica"
+        ]
+    },
+    {
+        "name": "Joe",
+        "surname": "Doe",
+        "email": "d@emdail.com",
+        "password": "94227446269fe8352fd1bfa55b88ef818c142af6ce5e016e43462190fd0cf0b5",
+        "subjects": [
+            "Matem\u00e1ticas",
+            "F\u00edsica",
+            "Qu\u00edmica"
+        ]
+    }
+]
