@@ -43,6 +43,8 @@ with open('encrypt.txt','wb') as f:
 
 
 
+
+
 #--------------------DECRYPT--------------------#
 print("--------------------DECRYPT--------------------")
 fernet = Fernet(key)

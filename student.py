@@ -21,7 +21,6 @@ class Student:
         database = json_manager.JsonManager('database/secure_passwords.json')
         database.add_item([self.hash, self.salt])
     
-    
     def register(self):
         database = json_manager.JsonManager('database/students_database.json')
         print(self)
