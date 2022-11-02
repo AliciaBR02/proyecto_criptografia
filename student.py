@@ -3,7 +3,7 @@ import hashlib
 import json_manager
 import os
 from password_secure import PasswordSecure
-from encryptation import Encryptation
+# from encryption import encryption
 import binascii
 
 
@@ -12,7 +12,8 @@ class Student:
         self.name = name
         self.surname = surname
         self.email = email
-        self.password = PasswordSecure(password).hashed_password
+        p = PasswordSecure(password)
+        self.password = p.hashed_password
         self.subjects = subjects
     
     def register(self):

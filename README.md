@@ -1,14 +1,5 @@
 # Face to learn
 Proyecto de criptografía de Alicia Benítez y Valentina Cataldo
-
-Entrega: 4 de Noviembre -> día anterior a la defensa de la práctica
-Esa semana también tenemos examen
-
-## TO-DO LIST
-- Creación, lectura y modificación de jsons asignatura-examenes y revisiones
-- clases y funciones definidas abajo
-- interfaz para poder ejecutar main
-- cifrado de jsons + datos personales + contraseñas
 -----------------------------------------------------
 ## Clases
 - Profesores

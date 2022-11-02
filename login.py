@@ -1,7 +1,5 @@
 """"""
 from json_manager import JsonManager
-from student import Student
-from encryptation import Encryptation
 import binascii
 import hashlib
 
@@ -11,7 +9,6 @@ class Login:
         self._password = password
         self._data = []
         self.load_data()
-        # self.login_student()
         
     def load_data(self):
         self._data = JsonManager("database/students_database.json").data
@@ -29,8 +26,6 @@ class Login:
         raise Exception('User not found')
             
     def check_password(self, password_input, password_real):
-        # buscar y desciptar el salt
-        # buscar en salt_database.json el salt correspondiente a la contraseña real
         password_database = JsonManager('database/secure_passwords.json').data
         our_salt = ""
         for salt in password_database:
@@ -42,7 +37,7 @@ class Login:
     
                 
 
-student = Login("hola@isaac.agresivo", "contraseña")
+student = Login("d@ejmail.com", "T9dbfjbfjbj@")
 student.login()
 
 # email, asignatura, examen de la asignatura, nota del examen
