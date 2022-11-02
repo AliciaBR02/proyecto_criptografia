@@ -1,4 +1,4 @@
-""""""
+"""Log a user in the system"""
 from json_manager import JsonManager
 import binascii
 import hashlib
@@ -17,13 +17,13 @@ class Login:
         database = JsonManager('database/students_database.json')
         for student in database.data:
             if student['email'] == self._email:
-                # comprobar que la password sea correcta
+                # check that the password is correct
                 result = self.check_password(self._password, student['password'])
                 if result:
-                    return('User logged in successfully')
+                    return 'User logged in successfully'
                     
-                raise Exception('Password incorrect')
-        raise Exception('User not found')
+                return 'Incorrect password'
+        return 'User not registered'
             
     def check_password(self, password_input, password_real):
         password_database = JsonManager('database/secure_passwords.json').data
@@ -32,13 +32,5 @@ class Login:
             if salt['hashed_password'] == password_real:
                 our_salt = salt['salt']
         undo = binascii.unhexlify(our_salt)
-        input_try = binascii.hexlify(hashlib.pbkdf2_hmac('sha256', password_input.encode('utf-8'), undo, 100000)).decode()
+        input_try = binascii.hexlify(hashlib.pbkdf2_hmac('sha256', password_input.encode('utf-8'), undo, 200000)).decode()
         return(input_try == password_real)
-    
-                
-
-# student = Login("d@ejmail.com", "T9dbfjbfjbj@")
-# student.login()
-
-# email, asignatura, examen de la asignatura, nota del examen
-# cifrar email, nota

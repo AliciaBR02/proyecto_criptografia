@@ -1,34 +1,20 @@
-import hashlib
-# from Crypto import Random
-# from Crypto.Cipher import AES
-# from base64 import b64encode, b64decode
-import os
-from cryptography.hazmat.primitives.kdf.scrypt import Scrypt
 from cryptography.hazmat.backends import default_backend
 from cryptography.fernet import Fernet
-import os
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
-
-import hmac
 from hashlib import md5, scrypt
-import json
 from json_manager import JsonManager
-import binascii
-from login import Login
 import base64
 
 class Encryption:
-    def __init__(self, email): #key = alg derivación (salt, contraseña)
-        
+    def __init__(self, email):
         self.key = self.get_key(email)
         self.encrypted = ""
 
     def encrypt(self, message, path):
-        # print(path)
-        # key base 64
         key = self.key
-
+        if key == "key no found":
+            return "key not found"
         f = Fernet(key)
         self.encrypted = f.encrypt(message.encode('utf-8')).decode('utf-8')
         self.key = key.decode('utf-8')
@@ -39,16 +25,11 @@ class Encryption:
         database = JsonManager(path).data
         key = ''
         for dic in database:
-            # print(dic["encrypted"])
             if dic["encrypted"] == encrypted:
                 key = dic["key"]
-                # print(key)
-                # print("y")
-                
         if key == "":
             return "key not found"
         f = Fernet(key)
-        # print(encrypted)
         decrypted = f.decrypt(encrypted.encode('utf-8'))
         return decrypted.decode('utf-8')
     
@@ -56,9 +37,9 @@ class Encryption:
         database = JsonManager('database/students_database.json')
         password_database = JsonManager('database/secure_passwords.json').data
         for student in database.data:
-            # print(student['email'])
+            # we look for the email in the database
             if student['email'] == email:
-                # comprobar que la password sea correcta
+                # check if the password is correct
                 password_real = student['password']
                 for key in password_database:
                     if key['hashed_password'] == password_real:
@@ -71,11 +52,5 @@ class Encryption:
                             backend=backend
                         )
                         key = base64.urlsafe_b64encode(kdf.derive(key["key"].encode('utf-8')))
-                        # return 32 url-safe base64-ecnoded bytes- key
-                        # print(key)
                         return key
-        raise Exception("key not found")
-# e = encryption()
-# message = "Hello World!"
-# encrypted = e.encrypt(message)
-# print(e.decrypt(encrypted))
+        return "key not found"

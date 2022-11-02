@@ -1,101 +1,255 @@
-###################################
-#      ======= MAIN =======       #
-###################################
-""" Este módulo contendrá las funciones básicas para el funcionamiento criptográfico de nuestro programa. """
-# la libreríad de cryptography solo sirve para cifrar y descifrar, no para firmar y verificar firmas
-# tampoco sirve para generar claves hash
-# cif sim, hash/hmac
-#----------- SYMMETRIC CIPHERS -----------
-### Importamos las librerias necesarias
-import base64
-from cryptography.hazmat.primitives.kdf.scrypt import Scrypt
-from cryptography.hazmat.backends import default_backend
-from cryptography.fernet import Fernet
-import hmac
-from hashlib import md5
-import json
+from tkinter import *
+import tkinter as tk
+from tkinter import ttk
+from registration import Registration
+from login import Login
+from marks import MarksManager
+from tkinter import messagebox
+
+def register():
+    window_register.pack()
+    if window_login:
+        window_login.forget()
+
+def sign_up():
+    name = name_enter.get()
+    surname = surname_enter.get()
+    email = email_enter.get()
+    password = password_enter.get()
+    subjects_selected = []
+    selected_indices = subjects.curselection()
+    subjects_selected = [str(subjects.get(i)) for i in selected_indices]
+    print(subjects_selected)
+    register = Registration(name, surname, email, password, subjects_selected).register_student()
+    messagebox.showinfo("Register", register)
+    if register == "You have been registered successfully":
+        window_student.pack()
+        window_home.forget()
+        window_register.forget()
+
+def login_function():
+    mail = email_enter.get()
+    password = password_enter.get()
+    l = Login(mail, password).login()
+    messagebox.showinfo("Log In", l)
+    if l == "User logged in successfully":
+        window_student.pack()
+        window_home.forget()
+        window_login.forget()
 
 
-#----------------- Cifrado simétrico -----------------#
-#--------------------ENCRYPT--------------------#
-print("--------------------ENCRYPT--------------------")
-# Generate key and store it in a file
-key = Fernet.generate_key()
-with open('key.key','wb') as file:
-    file.write(key)
+def login():
+    window_login.pack()
+    if window_register:
+        window_register.forget()
 
-#this just opens your 'key.key' and assings the key stored there as 'key'
-with open('key.key','rb') as file:
-    key = file.read()
+def add_nota():
+    window_add_mark.pack()
 
-#this opens your json and reads its data into a new variable called 'data'
-with open('nota.json','rb') as file:
-    data = file.read()
+def add_mark():
+    email = email_enter.get()
+    exam = exam_enter.get()
+    mark = mark_enter.get()
+    subject_add = subjects.get(ACTIVE)
+    mark_manager = MarksManager()
+    mark = mark_manager.add_mark(email, subject_add, exam, int(mark))
+    messagebox.showinfo("Marks", mark )
+    if mark == "Mark added successfully":
+        window_student.pack()
+        window_add_mark.forget()
 
-#this encrypts the data read from your json and stores it in 'encrypted'
-fernet = Fernet(key)
-encrypted = fernet.encrypt(data)
+    
+def page_search():
+    window_search.pack()
+    
+def search():
+    email = email_enter.get()
+    password = password_enter.get()
+    l = Login(email, password).login()
+    if (l == "User logged in successfully"):
+        mark_manager = MarksManager()
+        result = mark_manager.get_marks(email)
+        marks_result = ''
+        if len(result) != 0:
+            for i in result:
+                marks_result += i["subject"] + "->" + i["exam"] + ": " + str(i["mark"]) + "\n\n"
+        else:
+            marks_result = "No marks available"
+        messagebox.showinfo("Marks", marks_result)
+    else:        
+        messagebox.showinfo("Error", "Incorrect data")
 
-#this writes your new, encrypted data into a new JSON file
-with open('encrypt.txt','wb') as f:
-    f.write(encrypted)
+# -------------------- MAIN ----------------------
+
+global window_principal
+pestas_color = "#76D7C4"
+accept_color = "#6666FF"
+window_principal = tk.Tk()
+global name
+global surname
+global email
+global password
+global subjects
+global exam
+global mark
+name = StringVar()
+surname = StringVar()
+email = StringVar()
+password = StringVar()
+resultado_notas = StringVar()
+exam = StringVar()
+mark = IntVar()
+
+window_principal.geometry("1500x800")
+window_principal.title("Face2Learn")
+
+global ventana_inicio
+window_home = Frame(window_principal)
+window_home.pack()
+Label(window_home, text="Pick an option", bg="white", width="300", height="2", font=("Calibri", 13)).pack()
+Label(window_home,text="").pack()
+Button(window_home, text="Sign in", height="2", width="30", bg=pestas_color, command=login).pack()
+Label(window_home, text="").pack()
+Button(window_home, text="Sign up", height="2", width="30", bg=pestas_color, command=register).pack()
+Label(window_home, text="").pack()
 
 
 
+# -------------------- LOGIN ----------------------
+
+global ventana_login
+window_login = Frame(window_principal)
+
+Label(window_login, text="Please enter details below to login").pack()
+Label(window_login, text="").pack()
+etiqueta_email = Label(window_login, text="Email * ")
+etiqueta_email.pack()
+email_enter = Entry(window_login, textvariable=email)
+email_enter.pack()
+
+etiqueta_password = Label(window_login, text="Password * ")
+etiqueta_password.pack()
+password_enter = Entry(window_login, textvariable=password, show='*')
+password_enter.pack()
+
+Label(window_login, text="").pack()
+Button(window_login, text="Enter", width=10, height=1, bg=accept_color, command=login_function).pack()
 
 
 
-#--------------------DECRYPT--------------------#
-print("--------------------DECRYPT--------------------")
-fernet = Fernet(key)
+# -------------------- REGISTER ----------------------
 
-with open('encrypt.txt', 'rb') as enc_file:
-   encrypted = enc_file.read()
-# decrypting the file
-decrypted = fernet.decrypt(encrypted)
-# opening the file in write mode and writing the decrypted data
-with open('decrypt.json', 'wb') as dec_file:
-   dec_file.write(decrypted)
-with open('decrypt.json','rb') as file:
-      decrypted = file.read()
-      print(decrypted)
+global ventana_registro
+window_register = Frame(window_principal)
+window_register.config(width=300, height=250)
+subjects = Listbox(window_register, selectmode=MULTIPLE)
+lists_subjects = ["Mathematics", "Physics", "Chemistry", "Biology", "Language", "English", "French", "German", "History", "Geography", "Philosophy", "Economics", "Technical Drawing", "Computer Science", "Physical Education", "Religion"]
+for i in lists_subjects:
+    subjects.insert(END, i)
+
+Label(window_register, text="Please enter details below to register").pack()
+Label(window_register, text="").pack()
+etiqueta_nombre = Label(window_register, text="Name * ")
+etiqueta_nombre.pack()
+name_enter = Entry(window_register, textvariable=name)
+name_enter.pack()
+
+etiqueta_apellido = Label(window_register, text="Surname * ")
+etiqueta_apellido.pack()
+surname_enter = Entry(window_register, textvariable=surname)
+surname_enter.pack()
+
+etiqueta_email = Label(window_register, text="Email * ")
+etiqueta_email.pack()
+email_enter = Entry(window_register, textvariable=email)
+email_enter.pack()
+
+etiqueta_password = Label(window_register, text="Password * ")
+etiqueta_password.pack()
+password_enter = Entry(window_register, textvariable=password, show='*')
+password_enter.pack()
+
+etiqueta_subjects = Label(window_register, text="Subject * ")
+etiqueta_subjects.pack()
+subjects.pack()
+
+Label(window_register, text="").pack()
+
+Button(window_register, text="Sign up", height="2", width="20", bg=accept_color, command=sign_up).pack()
+
+# --------------------- STUDENT ----------------------
+global ventana_student
+window_student = Frame(window_principal)
+window_student.config(width=300, height=250)
+
+Label(window_student, text="Welcome").pack()
+
+Label(window_student, text="").pack()
+
+Button(window_student, text="Search", height="2", width="20", bg=accept_color, command=page_search).pack()
+
+Button(window_student, text = 'Add mark', height="2", width="20", bg=accept_color, command=add_nota).pack()
+
+#--------------------- SEARCH ----------------------
+global ventana_buscar
+window_search = Frame(window_principal)
+window_search.config(width=300, height=250)
+
+Label(window_search, text="For security reasons, enter your email and password again, please").pack()
+Label(window_search, text="").pack()
+
+etiqueta_email = Label(window_search, text="Email * ")
+etiqueta_email.pack()
+email_enter = Entry(window_search, textvariable=email)
+email_enter.pack()
+etiqueta_password = Label(window_search, text="Password * ")
+etiqueta_password.pack()
+password_enter = Entry(window_search, textvariable=password, show='*')
+password_enter.pack()
+Label(window_search, text="").pack()
+Button(window_search, text = 'Search', height="2", width="20", bg=accept_color, command=search).pack()
 
 
-   
-#----------- HASH KEYS-----------#
-print("-------------------HASH KEYS-------------------")   
+
+#--------------------- ADD NOTA ----------------------
+global ventana_add_mark
+window_add_mark = Frame(window_principal)
+window_add_mark.config(width=300, height=250)
+subjects_mark = Listbox(window_add_mark, selectmode=SINGLE)
+
+lists_subjects = ["Mathematics", "Physics", "Chemistry", "Biology", "Language", "English", "French", "German", "History", "Geography", "Philosophy", "Economics", "Technical Drawing", "Computer Science", "Physical Education", "Religion"]
+for i in lists_subjects:
+    subjects_mark.insert(END, i)
+
+Label(window_add_mark, text="Please enter the mark below").pack()
+Label(window_add_mark, text="").pack()
+
+etiqueta_email = Label(window_add_mark, text="Email * ")
+etiqueta_email.pack()
+email_enter = Entry(window_add_mark, textvariable=email)
+email_enter.pack()
 
 
-def hmac_md5(key, msg):
-    return hmac.HMAC(key, msg, md5)
-
-#key2 = fernet.generate_key()
-# generar salt aleatorio
+etiqueta_subjects = Label(window_add_mark, text="Subject * ")
+etiqueta_subjects.pack()
+subjects_mark.pack()
 
 
-salt = b'1234567890123456' # tiene que ser aleatorio para cada usuario
-password = "contraseña"
-# esto nos hace bien el hash
-hashed_key = hmac.new(key=salt, msg=password.encode(), digestmod=md5).hexdigest()
-print("HI HELLOE: ", hashed_key)
-# hash the key with cryptography library
+etiqueta_exam = Label(window_add_mark, text="Exam * ")
+etiqueta_exam.pack()
+exam_enter = Entry(window_add_mark, textvariable=exam)
+exam_enter.pack()
+
+etiqueta_mark = Label(window_add_mark, text="Mark * ")
+etiqueta_mark.pack()
+mark_enter = Entry(window_add_mark, textvariable=mark)
+mark_enter.pack()
+
+Label(window_add_mark, text="").pack()
+
+Button(window_add_mark, text = 'Add', height="2", width="20", bg=accept_color, command=add_mark).pack()
 
 
-print("Hashed key: ", hashed_key)
-with open('hashed.txt','w') as file:
-    file.write(hashed_key)
 
+window_principal.mainloop()
 
-# from hash to key
-with open('hashed.txt','r') as file:
-      hashed = file.read()
-      print("Hashed key: ", hashed)
-      key = hashed.encode('utf-8')
-      print("Key: ", key)
-      
-try1 = input("Introduce la contraseña: ")
-h1 = hmac.new(key=salt, msg=try1.encode(), digestmod=md5).hexdigest()
-if (try1 != password):
-   print("OLA K ASE") #funsiona porque el hash es distinto
-else:
-   print("MISMA CONTRASEÑA NINIO")

@@ -1,4 +1,4 @@
-# Face to learn
+# Face2learn
 Proyecto de criptografía de Alicia Benítez y Valentina Cataldo
 -----------------------------------------------------
 ## Clases
@@ -149,6 +149,3 @@ C----------->Hx(C)
 |		  |
 ---------------
 	C Hx(C)
-
-
-en la librería cryptography, HMAC ES ESTO -> INVESTIGARLO

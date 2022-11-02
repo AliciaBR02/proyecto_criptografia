@@ -1,6 +1,6 @@
 from attribute.attribute import Attribute
 
 class Subjects(Attribute):
-    """Classs for the attribute FullName"""
-    _validation_pattern = r"(Matemáticas|Física|Química|Biología|Lengua|Inglés|Francés|Alemán|Historia|Geografía|Filosofía|Economía|Dibujo Técnico|Informática|Educación Física|Religión)"
+    """Class for the attribute FullName"""
+    _validation_pattern = r"(Mathematics|Physics|Chemistry|Biology|Language|English|French|German|History|Geography|Philosophy|Economics|Technical Drawing|Computer Science|Physical Education|Religion)"
     _validation_error_message = "subject is not valid"

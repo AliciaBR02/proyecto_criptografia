@@ -5,34 +5,23 @@ import binascii
 
 class PasswordSecure:
     def __init__(self, password):
-        # bytes -> 64 -> string
+        # create a salt, then hash the password and get a key
         self.salt = os.urandom(32)
         self.hashed_password = binascii.hexlify(self.hash_password(password, self.salt)).decode()
         self.key = self.create_key(password)
+        # save all the data
         self.save_password()
         
     def save_password(self):
-        # save salt and hashed password        
+        # save salt and hashed password in a json file
         self.salt = binascii.hexlify(self.salt).decode()
         self.key = binascii.hexlify(self.key).decode()
         JsonManager("database/secure_passwords.json").add_item(self)
     
     def create_key(self, password):
+        # create a key from the password
         return hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), self.salt, 100000)
-        
+
     @staticmethod
     def hash_password(password, salt):
-        print("real salt: ", salt)
-        return hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100000)
-
-
-# password = "contraseña" 
-# hash = PasswordSecure(password)
-# print(hash.hashed_password)
-# try1 = input("Introduce la contraseña: ")
-# # h1 = hmac.new(key=salt, msg=try1.encode(), digestmod=md5).hexdigest()
-
-# if (try1 != password):
-#    print("OLA K ASE") #funsiona porque el hash es distinto
-# else:
-#    print("MISMA CONTRASEÑA NINIO")  
+        return hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 200000)

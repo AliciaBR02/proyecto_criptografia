@@ -1,13 +1,1 @@
-[
-    {
-        "name": "Joe",
-        "surname": "Doe",
-        "email": "dd@email.com",
-        "password": "86ba9325aecbda5ab7961666b3b268437897c0218f7d099d0258921f00d87f9a",
-        "subjects": [
-            "F\u00edsica",
-            "Qu\u00edmica",
-            "Lengua"
-        ]
-    }
-]
+[]
