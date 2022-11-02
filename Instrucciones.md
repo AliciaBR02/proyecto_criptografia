@@ -1,0 +1,17 @@
+# Instrucciones para el uso de la aplicación
+# Autor: Valentina Cataldo Jiménez y Alicia Benítez Rogero
+
+## 1. Instalación 
+Para instalar la aplicación, es necesario tener instalado Python 3.6 o superior.
+Instalar la librería cryptography y tkinter
+
+## 2. Ejecución
+Para ejecutar la aplicación, es necesario ejecutar el archivo main.py
+Aunque puedan aparecer errores en encryption.py y password_secure.py, no afectan a la ejecución de la aplicación.
+
+## 3. Uso
+Primero, se debe crear un usuario. Para ello, se debe introducir el email, nombre, apellidos, contraseña y asignaturas que cursa el alumno.
+Una vez creado el usuario, se puede iniciar sesión con el email y la contraseña en la próxima ejecución.
+Una vez iniciada la sesión, se puede acceder a las distintas funcionalidades de la aplicación:
+    - Añadir una nueva nota: Se debe introducir el email, el nombre de la asignatura, la nota y el examen.
+    - Ver las notas de una asignatura: Se debe introducir el email y la asignatura.

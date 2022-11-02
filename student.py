@@ -1,4 +1,4 @@
-"""This file will contain the functions to register a new user and to login an existing user"""
+"""This file will contain the functions of the user 'Student'"""
 import json_manager
 from password_secure import PasswordSecure
 
@@ -12,5 +12,6 @@ class Student:
         self.subjects = subjects
     
     def register(self):
+        # save the data in the student database
         database = json_manager.JsonManager('database/students_database.json')
         database.add_item(self)

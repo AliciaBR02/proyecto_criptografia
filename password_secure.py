@@ -2,26 +2,29 @@ import hashlib
 import os
 from json_manager import JsonManager
 import binascii
+from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+from cryptography.hazmat.primitives import hashes
+import base64
+
+
+
 
 class PasswordSecure:
     def __init__(self, password):
-        # create a salt, then hash the password and get a key
-        self.salt = os.urandom(32)
+        # create a random salt
+        salt = os.urandom(32)
+        self.salt = salt
+        # hash the password with the created salt
         self.hashed_password = binascii.hexlify(self.hash_password(password, self.salt)).decode()
-        self.key = self.create_key(password)
-        # save all the data
+        # create a key derivating from the salt and the password
         self.save_password()
         
     def save_password(self):
-        # save salt and hashed password in a json file
+        """Save the password and the salt in a json file"""
         self.salt = binascii.hexlify(self.salt).decode()
-        self.key = binascii.hexlify(self.key).decode()
         JsonManager("database/secure_passwords.json").add_item(self)
     
-    def create_key(self, password):
-        # create a key from the password
-        return hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), self.salt, 100000)
-
     @staticmethod
     def hash_password(password, salt):
+        """Hash the password with the salt"""
         return hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 200000)
