@@ -19,11 +19,16 @@ class Registration:
         self.password = Password(password).value
         self.subject_list = []
         for i in subjects:
+            print(i)
+            print(len(i))
+            #depurar el texto de i solo a letras
             subject = Subjects(i).value
+            print('agregado')
             self.subject_list.append(subject)
         # self.data = []
+        print(self.subject_list)
         self.data = self.load_data()
-        self.register_student()
+        # self.register_student()
         
     def load_data(self):
         return JsonManager("database/students_database.json").data
@@ -37,6 +42,7 @@ class Registration:
         
         st = student.Student(self.name, self.surname, self.email, self.password, self.subject_list)
         st.register()
+        return "You have been registered successfully"
         
     # def create_key(self, password):
     #     password_database = JsonManager('database/secure_passwords.json').data
@@ -65,6 +71,6 @@ class Registration:
                 
                 
 
-# s = Registration("Joe", "Doe", "d@ejdmadil.com", "T9dbfjbfjbj@", ["Matemáticas", "Física", "Química"])
-
+# s = Registration("Joe", "Doe", "dd@email.com", "T9dbfjbfjbj@", ["Matemáticas", "Física", "Química"]).register_student()
+# print(s)
 # s.login()

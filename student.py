@@ -19,7 +19,6 @@ class Student:
     def register(self):
         database = json_manager.JsonManager('database/students_database.json')
         database.add_item(self)
-        print('You have been registered successfully')
     
    
      

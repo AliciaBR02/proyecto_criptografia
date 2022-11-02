@@ -12,7 +12,7 @@ class MarksManager:
         self.mark = ""
         pass
 
-    def add_mark(self, email, subject, exam, mark, password):
+    def add_mark(self, email, subject, exam, mark):
         mark_data = json_manager.JsonManager("database/marks_database.json")
         self.email = Encryption(email).encrypt(Email(email).value, "database/emails_encrypted.json") # validate email
         self.subject = Subjects(subject).value # validate subject
@@ -20,6 +20,7 @@ class MarksManager:
         if mark <= 10 and mark >= 0:
             self.mark = Encryption(email).encrypt(str(mark), "database/marks_encrypted.json") # validate mark
             mark_data.add_item(self)
+            return "Mark added successfully"
         else:
             raise Exception("Mark must be between 0 and 10")
     
@@ -43,8 +44,8 @@ class MarksManager:
     
     
 mark_manager = MarksManager()
-# mark_manager.add_mark("d@ejmail.com","Física", "Parcial 1", 3, "T9dbfjbfjbj@")
-# mark_manager.add_mark("hola@email.com", "Química", "Parcial 1", 9)
-# mark_manager.add_mark("hola@email.com", "Lengua", "Parcial 1", 5)
-result = mark_manager.get_marks("d@ejmail.com")
+# mark_manager.add_mark("dd@email.com","Física", "Parcial 1", 3)
+# mark_manager.add_mark("dd@email.com", "Química", "Parcial 1", 8)
+# mark_manager.add_mark("dd@email.com", "Lengua", "Parcial 1", 5)
+result = mark_manager.get_marks("dd@email.com")
 print("OUR RESULT: ", result)

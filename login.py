@@ -20,8 +20,8 @@ class Login:
                 # comprobar que la password sea correcta
                 result = self.check_password(self._password, student['password'])
                 if result:
-                    print('User logged in successfully')
-                    return
+                    return('User logged in successfully')
+                    
                 raise Exception('Password incorrect')
         raise Exception('User not found')
             
@@ -37,8 +37,8 @@ class Login:
     
                 
 
-student = Login("d@ejmail.com", "T9dbfjbfjbj@")
-student.login()
+# student = Login("d@ejmail.com", "T9dbfjbfjbj@")
+# student.login()
 
 # email, asignatura, examen de la asignatura, nota del examen
 # cifrar email, nota

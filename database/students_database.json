@@ -2,23 +2,12 @@
     {
         "name": "Joe",
         "surname": "Doe",
-        "email": "d@ejmail.com",
-        "password": "a945fda68a2d6b3447699e105d0b23f7495972322180f010e94fae7d2925c693",
+        "email": "dd@email.com",
+        "password": "86ba9325aecbda5ab7961666b3b268437897c0218f7d099d0258921f00d87f9a",
         "subjects": [
-            "Matem\u00e1ticas",
             "F\u00edsica",
-            "Qu\u00edmica"
-        ]
-    },
-    {
-        "name": "Joe",
-        "surname": "Doe",
-        "email": "d@ejmadil.com",
-        "password": "3c45e9c2f469caf78bd19c4943993f09bab1d60bd89eee6bc91b6d775434defd",
-        "subjects": [
-            "Matem\u00e1ticas",
-            "F\u00edsica",
-            "Qu\u00edmica"
+            "Qu\u00edmica",
+            "Lengua"
         ]
     }
 ]
