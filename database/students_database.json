@@ -1,1 +1,21 @@
-[]
+[
+    {
+        "name": "alicia",
+        "surname": "benitez",
+        "email": "alicia@benit.ez",
+        "password": "51ec6a55feeb5581e1fe2dddbe2087366c9bcf078e177e0b491a456ca17e66d1",
+        "subjects": [
+            "Biology"
+        ]
+    },
+    {
+        "name": "alicia",
+        "surname": "benitez",
+        "email": "alicia@benitez.com",
+        "password": "6ef8f3898d1057f4a75311bfd7471ee704db152209e5c070073bd9fa6d06eee6",
+        "subjects": [
+            "Chemistry",
+            "French"
+        ]
+    }
+]

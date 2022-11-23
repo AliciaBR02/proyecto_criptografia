@@ -1,1 +1,14 @@
-[]
+[
+    {
+        "subject": "Biology",
+        "email": "gAAAAABjYtmGjU161vjCWIYfB6TvVpQFSBX2ZsDjhZank5CZDybqbjz2bbcgtTYxIoWRfFPIRkX-G_pjfc4tL4t3IKjDvZateQ==",
+        "exam": "NO",
+        "mark": "gAAAAABjYtmGXh6YsX-9beYIQdRh-zpxMtoJQDVng8_TYCnv6Mj6VqMUj9w5HswJsgLihoEcOyRAYdL3nZRKKDEnATmw8MiOmQ=="
+    },
+    {
+        "subject": "Chemistry",
+        "email": "gAAAAABjZN_Qh-4dLqDW3faTxrnEj9LiHTQnzZQwpxw8C6V_r8JOE3t44XGDFL2WDarNnDkb28DtWE73_nkHZPzyt_rGK-Fdl1GpCDj--bfhN2SHjKih_M0=",
+        "exam": "parcial",
+        "mark": "gAAAAABjZN_Qqc9nTuueESNrwedzkGtvz_jDfTWOaBr3mHyVdjZ-Kt58s8VBNuT5Ht8fbnct3yvhcAuILva1eiofGVfgL0S9Xg=="
+    }
+]

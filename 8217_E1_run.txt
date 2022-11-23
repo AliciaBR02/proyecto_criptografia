@@ -2,7 +2,6 @@
 # Autor: Valentina Cataldo Jiménez y Alicia Benítez Rogero
 
 ## 1. Instalación 
-Para instalar la aplicación, es necesario tener instalado Python 3.6 o superior.
 Instalar la librería cryptography y tkinter
 
 ## 2. Ejecución
