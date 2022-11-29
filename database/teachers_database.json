@@ -2,8 +2,8 @@
     {
         "name": "Juan",
         "surname": "Perez",
-        "email": "estudiante@mail.com",
-        "password": "b12249a619090fa9341450e812a854403e5b8b45008cb6f81e6c5292d01201e0",
+        "email": "profesor@mail.com",
+        "password": "1d638306c263201f81e156ca2edb02e89d6cc2cc3dc862459024fbc7a945dcaa",
         "subjects": [
             "Mathematics",
             "Physics"

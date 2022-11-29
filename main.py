@@ -24,11 +24,12 @@ def sign_up():
     email = email_enter.get()
     password = password_enter.get()
     subjects_selected = []
+    role = role_enter.get(role_enter.curselection())
     # Get selected subjects
     selected_indices = subjects.curselection()
     subjects_selected = [str(subjects.get(i)) for i in selected_indices]
     # Register user
-    register = Registration(name, surname, email, password, subjects_selected).register_student()
+    register = Registration(name, surname, email, password, subjects_selected, role).register_student()
     # Show message
     messagebox.showinfo("Register", register)
     if register == "You have been registered successfully":
@@ -41,11 +42,16 @@ def login_function():
     """Log in function"""
     mail = email_enter.get()
     password = password_enter.get()
+    role = role_enter.get(role_enter.curselection())
     # Login user
-    l = Login(mail, password).login()
+    l = Login(mail, password, role).login()
     messagebox.showinfo("Log In", l)
-    if l == "User logged in successfully":
+    if l == "User logged in successfully" and role == "Student":
         window_student.pack()
+        window_home.forget()
+        window_login.forget()
+    elif l == "User logged in successfully" and role == "Teacher":
+        window_teacher.pack()
         window_home.forget()
         window_login.forget()
 
@@ -66,13 +72,14 @@ def add_mark():
     exam = exam_enter.get()
     mark = mark_enter.get()
     password = password_enter.get()
+    email_student = email_student.get()
     # Get selected subject
     subject_add = subjects_mark.get(subjects_mark.curselection())
     mark_manager = MarksManager()
-    mark = mark_manager.add_mark(email, password, subject_add, exam, int(mark))
+    mark = mark_manager.add_mark(email, password, email_student, subject_add, exam, int(mark))
     messagebox.showinfo("Marks", mark )
     if mark == "Mark added successfully":
-        window_student.pack()
+        window_teacher.pack()
         window_add_mark.forget()
 
 # Buscar nota
@@ -84,16 +91,19 @@ def search():
     """Search marks function"""
     email = email_enter.get()
     password = password_enter.get()
+    email_student = email_student_enter.get()
+    subject = subject_enter.get(subject_enter.curselection())
     # Check that user is logged in
-    l = Login(email, password).login()
+    l = Login(email, password, role).login()
     if (l == "User logged in successfully"):
         # Show marks
         mark_manager = MarksManager()
-        result = mark_manager.get_marks(email, password)
+        result = mark_manager.get_marks(email, password, email_student, subject)
         marks_result = ''
         if len(result) != 0:
+            marks_result =  "Student: " + email_student  
             for i in result:
-                marks_result += i["subject"] + "->" + i["exam"] + ": " + str(i["mark"]) + "\n\n"
+                marks_result += "\n" + i["subject"] + "->" + i["exam"] + ": " + str(i["mark"]) + "\n\n"
         else:
             marks_result = "No marks available"
         messagebox.showinfo("Marks", marks_result)
@@ -118,6 +128,7 @@ global password
 global subjects
 global exam
 global mark
+global role
 name = StringVar()
 surname = StringVar()
 email = StringVar()
@@ -125,6 +136,7 @@ password = StringVar()
 resultado_notas = StringVar()
 exam = StringVar()
 mark = IntVar()
+role = StringVar()
 
 
 # ------------------ HOME -----------------------
@@ -160,6 +172,11 @@ etiqueta_password = Label(window_login, text="Password * ")
 etiqueta_password.pack()
 password_enter = Entry(window_login, textvariable=password, show='*')
 password_enter.pack()
+
+etiqueta_role = Label(window_login, text="Role * ")
+role_enter = Listbox(window_login, height=2, selectmode=SINGLE)
+role_enter.insert(1, "Student")
+role_enter.insert(2, "Teacher")
 
 Label(window_login, text="").pack()
 
@@ -223,8 +240,22 @@ Label(window_student, text="Welcome").pack()
 Label(window_student, text="").pack()
 
 # Select between add mark and search marks
+# Button(window_student, text="Search", height="2", width="20", bg=accept_color, command=page_search).pack()
+# Button(window_student, text = 'Add mark', height="2", width="20", bg=accept_color, command=add_nota).pack()
+
+# --------------------- TEACHER ----------------------
+global window_teacher
+window_teacher = Frame(window_principal)
+window_teacher.config(width=300, height=250)
+
+Label(window_teacher, text="Welcome").pack()
+
+Label(window_teacher, text="").pack()
+
+# Select between add mark,  search marks and upload marks
 Button(window_student, text="Search", height="2", width="20", bg=accept_color, command=page_search).pack()
-Button(window_student, text = 'Add mark', height="2", width="20", bg=accept_color, command=add_nota).pack()
+Button(window_teacher, text="Add mark", height="2", width="20", bg=accept_color, command=add_nota).pack()
+Button(window_teacher, text = 'Upload marks', height="2", width="20", bg=accept_color, command=upload_mark).pack()
 
 #--------------------- SEARCH ----------------------
 # Create search window
@@ -244,6 +275,7 @@ etiqueta_password = Label(window_search, text="Password * ")
 etiqueta_password.pack()
 password_enter = Entry(window_search, textvariable=password, show='*')
 password_enter.pack()
+subject_enter = Listbox(window_search, selectmode=SINGLE)
 
 Label(window_search, text="").pack()
 
@@ -268,33 +300,41 @@ for i in lists_subjects:
 Label(window_add_mark, text="Please enter the mark below").pack()
 Label(window_add_mark, text="").pack()
 
-etiqueta_email = Label(window_add_mark, text="Email * ")
-etiqueta_email.pack()
-email_enter = Entry(window_add_mark, textvariable=email)
-email_enter.pack()
-
-
-etiqueta_password = Label(window_add_mark, text="Password * ")
-etiqueta_password.pack()
-password_enter = Entry(window_add_mark, textvariable=password, show='*')
-password_enter.pack()
-
-
 etiqueta_subjects = Label(window_add_mark, text="Subject * ")
 etiqueta_subjects.pack()
 subjects_mark.pack()
 
+global email_student
+email_student = StringVar()
+email_student_exam = Label(window_add_mark, text="Student * ")
+email_student_exam.pack()
+email_student_enter = Entry(window_add_mark, textvariable=email_student)
+email_student_enter.pack()
 
 etiqueta_exam = Label(window_add_mark, text="Exam * ")
 etiqueta_exam.pack()
 exam_enter = Entry(window_add_mark, textvariable=exam)
 exam_enter.pack()
 
-
 etiqueta_mark = Label(window_add_mark, text="Mark * ")
 etiqueta_mark.pack()
 mark_enter = Entry(window_add_mark, textvariable=mark)
 mark_enter.pack()
+
+Label(window_add_mark, text="").pack()
+Label(window_add_mark, text="Comfirm identity").pack()
+
+email = StringVar()
+etiqueta_email = Label(window_add_mark, text="Email * ")
+etiqueta_email.pack()
+email_enter = Entry(window_add_mark, textvariable=email)
+email_enter.pack()
+
+password = StringVar()
+etiqueta_password = Label(window_add_mark, text="Password * ")
+etiqueta_password.pack()
+password_enter = Entry(window_add_mark, textvariable=password, show='*')
+password_enter.pack()
 
 Label(window_add_mark, text="").pack()
 

@@ -18,10 +18,10 @@ class Registration:
         self.subjects_list = self.subject_list(subjects)
         self.role = Role(role).value
         # save all the data in the database
-        self.data = self.load_data(role)
+        self.data = self.load_data()
         
-    def load_data(self, role):
-        if role == 's':
+    def load_data(self):
+        if self.role == 'Student':
             return JsonManager("database/students_database.json").data
         else:
             return JsonManager("database/teachers_database.json").data
