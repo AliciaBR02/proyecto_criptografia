@@ -16,11 +16,45 @@ class SignVerification:
             key_size=2048,
         )
         return private_key
+    # def write_private_key_file(self, private_key, mail):
+    #     pem = private_key.private_bytes(
+    #         encoding=serialization.Encoding.PEM,
+    #         format=serialization.PrivateFormat.TraditionalOpenSSL,
+    #         encryption_algorithm=serialization.NoEncryption()
+    #     )
+    #     with open("database/private_keys/private_key_"+mail+".pem", "wb") as f:
+    #         f.write(pem)
+    def encrypt_private_key(self, private_key, password):
+        # Encrypt the private key
+        pem = private_key.private_bytes(
+            encoding=serialization.Encoding.PEM,
+            format=serialization.PrivateFormat.TraditionalOpenSSL,
+            encryption_algorithm=serialization.BestAvailableEncryption(password.encode())
+        )
+        return pem
     
+    def decrypt_private_key(self, private_key, password):
+        # Decrypt the private key
+        private_key = serialization.load_pem_private_key(
+            private_key,
+            password=password.encode(),
+        )
+        return private_key
+    
+    def deserialize_public_key(self, public_key):
+        return serialization.load_pem_public_key(public_key)
+
     def generate_public_key(self, private_key):
         public_key = private_key.public_key()
         return public_key
-    
+
+    def encrypt_public_key(self, public_key):
+        # Encrypt the public key
+        pem = public_key.public_bytes(
+            encoding=serialization.Encoding.PEM,
+            format=serialization.PublicFormat.SubjectPublicKeyInfo
+        )
+        return pem    
     def create_signature(self, message, private_key):
         signature = private_key.sign(
             message,
@@ -32,14 +66,10 @@ class SignVerification:
         )
         return signature
 
-    def generate_certificate(self, private_key):
-        subject = issuer = x509.Name([
-            x509.NameAttribute(NameOID.COUNTRY_NAME, u"US"),
-            x509.NameAttribute(NameOID.STATE_OR_PROVINCE_NAME, u"California"),
-            x509.NameAttribute(NameOID.LOCALITY_NAME, u"San Francisco"),
-            x509.NameAttribute(NameOID.ORGANIZATION_NAME, u"My Company"),
-            x509.NameAttribute(NameOID.COMMON_NAME, u"mysite.com"),
-        ])
+    def generate_certificate(self, private_key, mail:str):
+        # subject is the student
+        subject = issuer = x509.Name([ x509.NameAttribute(NameOID.COMMON_NAME, mail) ])
+        
         cert = x509.CertificateBuilder().subject_name(
             subject
         ).issuer_name(
@@ -59,7 +89,7 @@ class SignVerification:
         # Sign our certificate with our private key
         ).sign(private_key, hashes.SHA256())
         # Write our certificate out to disk.
-        with open("database/certificates/certificate.pem", "wb") as f:
+        with open("database/certificates/certificate_"+mail+".pem", "wb") as f:
             f.write(cert.public_bytes(serialization.Encoding.PEM))
             
     # method that will save the message with the signature at the end in a new file input_signed.txt
@@ -69,8 +99,9 @@ class SignVerification:
             data = file.read()
         # convert to bytes-like object
         bdata = data.encode('utf-8')
-        with open('input_signed.txt', 'wb') as file:
-            file.write(bdata)
+        with open(input_file[:-4] + "_signed.txt", 'wb') as file:
+            # write the message and add a new line
+            file.write(bdata + b'\n')
         # now we create the signature from the message and the private key
         signature = self.create_signature(bdata, private_key)
         # decode the signature to string
@@ -78,7 +109,8 @@ class SignVerification:
         # s.extend(bytes(serialized, 'utf-8'))
         # decoded_signature = signature.decode('utf-8')
         # then we add the signature at the end of the file
-        with open('input_signed.txt', 'ab') as file:
+        # remove '.txt' from the file name
+        with open(input_file[:-4] + "_signed.txt", 'ab') as file:
             file.write(signature)
     
     def verify_signature(self, public_key, input_file):
@@ -87,6 +119,10 @@ class SignVerification:
             data = file.read()
         # then we read the signature from the end of the file
         signature = data[-256:]
+        print("THIS IS THE SIGNATURE:")
+        print(signature)
+        print("THIS IS THE MESSAGE:")
+        print(data[:-256])
         # finally we verify the signature
         try:
             public_key.verify(
@@ -102,9 +138,9 @@ class SignVerification:
         except:
             print("The signature is not valid.")
         
-s = SignVerification()
-private_key = s.generate_private_key()
-s.generate_certificate(private_key)
-s.sign_message(private_key, 'input.txt')
-public_key = s.generate_public_key(private_key)
-s.verify_signature(public_key, 'input_signed.txt')
+# s = SignVerification()
+# private_key = s.generate_private_key()
+# s.generate_certificate(private_key, "adam@adam.es")
+# s.sign_message(private_key, 'input.txt')
+# public_key = s.generate_public_key(private_key)
+# s.verify_signature(public_key, 'input_signed.txt')

@@ -3,6 +3,7 @@ import json_manager
 from password_secure import PasswordSecure
 from sign_verification import SignVerification
 from encryption import Encryption
+import os
 
 class Teacher:
     def __init__(self, name, surname, email, password, subjects):
@@ -13,9 +14,11 @@ class Teacher:
         self.password = p.hashed_password
         self.subjects = subjects
         s = SignVerification()
-        key = s.generate_private_key()
-        self.private_key = PasswordSecure(key).hashed_password
-        # self.private_key = self.generate_private_key(password)
+        private_key = s.generate_private_key()
+        # encriptamos la key
+        self.private_key = s.encrypt_private_key(private_key, password).decode('utf-8')
+        public_key = s.generate_public_key(private_key)
+        self.public_key = s.encrypt_public_key(public_key).decode('utf-8')
 
 
     

@@ -59,23 +59,49 @@ class MarksManager:
                 
         return student_marks
     
-    def sign_marks(self, email_teacher, password, email_student, subject):
-        """Sign the marks of the student"""
+    def write_marks(self, email_teacher, password, email_student, subject):
+        """Write the marks of the student"""
         marks = self.get_marks(email_teacher, password, email_student, subject)
         # write marks in a file
         # create the file if it does not exist, and write it if it does
         file_name = "database/" + email_student + "_" + subject + ".txt"
         with open(file_name, "w") as file:
             file.write(str(marks))
-        # sign the marks
-        s = SignVerification()
-        private_key = s.generate_private_key()
-        s.generate_certificate(private_key)
-        s.sign_message(private_key, file_name)
-        public_key = s.generate_public_key(private_key)
-        s.verify_signature(public_key, 'input_signed.txt')
         return marks
 
+# primero escribir las notas -> para decriptarlas, necesitamos que el profesor diga "quiero subirlas"
+# para ello, el estudiante lo solicita, y el profesor lo acepta
+# ahora el estudiante recibirá el archivo con las notas decriptadas -> tendrá que verificar la firma con su clave privada
+    def sign_marks(self, email_teacher, password, email_student, subject):
+        """Sign the marks of the student"""
+        s = SignVerification()
+        private_key = self.search_private_key(email_teacher, password)
+        s.sign_message(private_key, "database/" + email_student + "_" + subject + ".txt")
+
+    def search_private_key(self, email, password):
+        """Search the private key of the teacher"""
+        teachers_data = json_manager.JsonManager("database/teachers_database.json").data
+        for teacher in teachers_data:
+            if teacher["email"] == email:
+                return SignVerification().decrypt_private_key(teacher["private_key"].encode('utf-8'), password)
+                
+        return "The teacher is not registered"
+    # verify with publick key of teacher
+    def search_public_key(self, email):
+        """Search the public key of the teacher"""
+        teachers_data = json_manager.JsonManager("database/teachers_database.json").data
+        for teacher in teachers_data:
+            if teacher["email"] == email:
+                return SignVerification().deserialize_public_key(teacher["public_key"].encode('utf-8'))
+
+        return "The teacher is not registered"
+    
+    
+    def verify_signed_marks(self, email_teacher, email_student, subject):
+        """Verify the marks of the student"""
+        s = SignVerification()
+        public_key = self.search_public_key(email_teacher)
+        return s.verify_signature(public_key, "database/" + email_student + "_" + subject + "_signed.txt")
 # CÓMO FUNCIONA LA FIRMAR Y VERIFICAR
 # 1. (add_mark) El profesor genera un archivo con las notas del estudiante
 # 2. El profesor firma el archivo con su clave privada -> ARCHIVO FIRMADO = mensaje + firma al final
@@ -89,6 +115,11 @@ class MarksManager:
 # 9. El estudiante no puede ver las notas de otros estudiantes
 
 mark = MarksManager()
-result = (mark.add_mark("profesor@mail.com", "123456", "estudiante@mail.com", "Mathematics", "Primer parcial", 10))
+result = (mark.add_mark("profesor@mail.com", "1234", "estudiante@mail.com", "Mathematics", "parcial", 10))
+print('///////////////////////////////////////////')
 print(result)
-print(mark.get_marks("profesor@mail.com", "123456", "estudiante@mail.com", "Mathematics"))
+print('///////////////////////////////////////////')
+print(mark.write_marks("profesor@mail.com", "1234", "estudiante@mail.com", "Mathematics"))
+mark.sign_marks("profesor@mail.com", "1234", "estudiante@mail.com", "Mathematics")
+mark.verify_signed_marks("profesor@mail.com", "estudiante@mail.com", "Mathematics")
+
