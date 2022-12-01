@@ -98,15 +98,15 @@ def add_nota():
 
 def add_mark():
     """Add mark function"""
-    email = email_enter.get()
+    email_teacher = email_teacher_to_mark_enter.get()
     exam = exam_enter.get()
     mark = mark_enter.get()
-    password = password_enter.get()
+    password = password_teacher_to_mark.get()
     email_student = email_student_to_mark_enter.get()
     # Get selected subject
     subject_add = subjects_mark.get(subjects_mark.curselection())
     mark_manager = MarksManager()
-    mark = mark_manager.add_mark(email, password, email_student, subject_add, exam, int(mark))
+    mark = mark_manager.add_mark(email_teacher, password, email_student, subject_add, exam, int(mark))
     messagebox.showinfo("Marks", mark )
     if mark == "Mark added successfully":
         window_teacher.pack()
@@ -356,17 +356,19 @@ mark_enter.pack()
 Label(window_add_mark, text="").pack()
 Label(window_add_mark, text="Comfirm identity").pack()
 
-# email = StringVar()
-etiqueta_email = Label(window_add_mark, text="Email * ")
-etiqueta_email.pack()
-email_enter = Entry(window_add_mark, textvariable=email)
-email_enter.pack()
+global email_teacher_to_mark
+email_teacher_to_mark = StringVar()
+etiqueta_email_teacher_to_mark = Label(window_add_mark, text="Email * ")
+etiqueta_email_teacher_to_mark.pack()
+email_teacher_to_mark_enter = Entry(window_add_mark, textvariable=email_teacher_to_mark)
+email_teacher_to_mark_enter.pack()
 
-# password = StringVar()
-etiqueta_password = Label(window_add_mark, text="Password * ")
-etiqueta_password.pack()
-password_enter = Entry(window_add_mark, textvariable=password, show='*')
-password_enter.pack()
+global password_teacher_to_mark
+password_teacher_to_mark = StringVar()
+etiqueta_password_teacher_to_mark = Label(window_add_mark, text="Password * ")
+etiqueta_password_teacher_to_mark.pack()
+password_teacher_to_mark_enter = Entry(window_add_mark, textvariable=password_teacher_to_mark, show='*')
+password_teacher_to_mark_enter.pack()
 
 Label(window_add_mark, text="").pack()
 
@@ -428,7 +430,7 @@ password_enter.pack()
 Label(window_add_mark, text="").pack()
 
 # Add mark button
-Button(window_add_mark, text = 'Add', height="2", width="20", bg=accept_color, command=add_mark).pack()
+Button(window_add_mark, text = 'Add', height="2", width="20", bg=accept_color, command=upload_mark).pack()
 
 
 
