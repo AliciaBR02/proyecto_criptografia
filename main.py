@@ -102,7 +102,7 @@ def add_mark():
     exam = exam_enter.get()
     mark = mark_enter.get()
     password = password_enter.get()
-    email_student = email_student_enter.get()
+    email_student = email_student_to_mark_enter.get()
     # Get selected subject
     subject_add = subjects_mark.get(subjects_mark.curselection())
     mark_manager = MarksManager()
@@ -125,7 +125,7 @@ def search():
     """Search marks function"""
     email = email_enter.get()
     password = password_enter.get()
-    email_student = email_student_enter.get()
+    # email_student = email_student_enter.get()
     subject = subject_enter.get(subject_enter.curselection())
     # Check that user is logged in
     l = Login(email, password, role).login()
