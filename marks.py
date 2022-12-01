@@ -27,19 +27,32 @@ class MarksManager:
         self.email = Encryption(email_teacher, password).encrypt(Email(email_student).value)
         self.subject = Subjects(subject).value
         self.exam = Exam(exam).value
-        if mark <= 10 and mark >= 0 and self.check_subjects(email_student, subject): # if everything is okay, add the mark into the marks database
-            self.mark = Encryption(email_teacher, password).encrypt(str(mark)) # validate mark
-            mark_data.add_item(self)
-            return "Mark added successfully"
-        return "Some of the parameters are not valid"
+        if self.check_teacher_subject(email_teacher, password, self.subject):
+            if mark <= 10 and mark >= 0 and self.check_st_subjects(email_student, subject): # if everything is okay, add the mark into the marks database
+                self.mark = Encryption(email_teacher, password).encrypt(str(mark)) # validate mark
+                mark_data.add_item(self)
+                return "Mark added successfully"
+            return "Some of the parameters are not valid"
+        return "The teacher is not registered in the subject"
     
-    def check_subjects(self, email, subject):
+    def check_st_subjects(self, email, subject):
         """Check if the student is registered in the subject"""
         students_data = json_manager.JsonManager("database/students_database.json").data
     
         for student in students_data:
             if student["email"] == email and subject in student["subjects"]:
                 return True
+        return False
+    
+    #check teacher subject
+    def check_teacher_subject(self, email_teacher, password, subject):
+        """Check if the teacher is registered in the subject"""
+        teachers_data = json_manager.JsonManager("database/teachers_database.json").data
+        for teacher in teachers_data:
+            if teacher["email"] == email_teacher and subject in teacher["subjects"]:
+                return True
+
+        return False
     
     def get_marks(self, email_teacher, password, email_student, subject):
         """Get the marks of the student"""
@@ -120,12 +133,12 @@ class MarksManager:
 # 8. El estudiante puede ver sus notas
 # 9. El estudiante no puede ver las notas de otros estudiantes
 
-mark = MarksManager()
-result = (mark.add_mark("profesor@mail.com", "1234", "estudiante@mail.com", "Mathematics", "parcial", 10))
-print('///////////////////////////////////////////')
-print(result)
-print('///////////////////////////////////////////')
-print(mark.write_marks("profesor@mail.com", "1234", "estudiante@mail.com", "Mathematics"))
-mark.sign_marks("profesor@mail.com", "1234", "estudiante@mail.com", "Mathematics")
-mark.verify_signed_marks("profesor@mail.com", "estudiante@mail.com", "Mathematics")
+# mark = MarksManager()
+# result = (mark.add_mark("profesor@mail.com", "1234", "estudiante@mail.com", "Mathematics", "parcial", 10))
+# print('///////////////////////////////////////////')
+# print(result)
+# print('///////////////////////////////////////////')
+# print(mark.write_marks("profesor@mail.com", "1234", "estudiante@mail.com", "Mathematics"))
+# mark.sign_marks("profesor@mail.com", "1234", "estudiante@mail.com", "Mathematics")
+# mark.verify_signed_marks("profesor@mail.com", "estudiante@mail.com", "Mathematics")
 

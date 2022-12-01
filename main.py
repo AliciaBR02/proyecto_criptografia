@@ -98,23 +98,45 @@ def add_nota():
 
 def add_mark():
     """Add mark function"""
-    email_teacher = email_teacher_to_mark_enter.get()
+    email = email_teacher_to_mark_enter.get()
+    password = password_teacher_to_mark_enter.get()
+    email_student = email_student_to_mark_enter.get()
+    subject = subjects_mark.get(subjects_mark.curselection())
     exam = exam_enter.get()
     mark = mark_enter.get()
-    password = password_teacher_to_mark.get()
-    email_student = email_student_to_mark_enter.get()
-    # Get selected subject
-    subject_add = subjects_mark.get(subjects_mark.curselection())
-    mark_manager = MarksManager()
-    mark = mark_manager.add_mark(email_teacher, password, email_student, subject_add, exam, int(mark))
-    messagebox.showinfo("Marks", mark )
-    if mark == "Mark added successfully":
-        window_teacher.pack()
+    # Check that user is logged in
+    l = Login(email, password, role).login()
+    if (l == "User logged in successfully"):
+        # Add mark
+        mark_manager = MarksManager()
+        result = mark_manager.add_mark(email, password, email_student, subject, exam, int(mark))
+        messagebox.showinfo("Marks", result)
         window_add_mark.forget()
+
+    else:        
+        messagebox.showinfo("Error", "Incorrect data")
 
 def upload_mark():
     """Upload marks window"""
     window_upload_mark.pack()
+    
+def upload_marks():
+    """Upload marks function"""
+    email = email_teacher_to_upload_enter.get()
+    password = password_teacher_to_upload_enter.get()
+    email_student = email_student_to_upload_enter.get()
+    subject = subjects_upload.get(subjects_upload.curselection())
+    exam = exam_enter.get()
+    mark = mark_enter.get()
+    # Check that user is logged in
+    l = Login(email, password, role).login()
+    if (l == "User logged in successfully"):
+        # Add mark
+        mark_manager = MarksManager()
+        result = mark_manager.add_mark(email, password, email_student, subject, exam, int(mark))
+        messagebox.showinfo("Marks", result)
+    else:        
+        messagebox.showinfo("Error", "Incorrect data")
 
 # Buscar nota
 def page_search():
@@ -324,7 +346,6 @@ window_add_mark.config(width=300, height=250)
 subjects_mark = Listbox(window_add_mark, selectmode=SINGLE)
 
 # list of subjects
-lists_subjects = ["Mathematics", "Physics", "Chemistry", "Biology", "Language", "English", "French", "German", "History", "Geography", "Philosophy", "Economics", "Technical Drawing", "Computer Science", "Physical Education", "Religion"]
 for i in lists_subjects:
     subjects_mark.insert(END, i)
 
@@ -380,10 +401,9 @@ Button(window_add_mark, text = 'Add', height="2", width="20", bg=accept_color, c
 global window_upload_mark
 window_upload_mark = Frame(window_principal)
 window_upload_mark.config(width=300, height=250)
-subjects_mark = Listbox(window_upload_mark, selectmode=SINGLE)
+subjects_upload = Listbox(window_upload_mark, selectmode=SINGLE)
 
 # list of subjects
-lists_subjects = ["Mathematics", "Physics", "Chemistry", "Biology", "Language", "English", "French", "German", "History", "Geography", "Philosophy", "Economics", "Technical Drawing", "Computer Science", "Physical Education", "Religion"]
 for i in lists_subjects:
     subjects_mark.insert(END, i)
 
@@ -393,7 +413,7 @@ Label(window_upload_mark, text="").pack()
 
 etiqueta_subjects = Label(window_upload_mark, text="Subject * ")
 etiqueta_subjects.pack()
-subjects_mark.pack()
+subjects_upload.pack()
 
 global email_student_to_upload
 email_student_to_upload = StringVar()
@@ -415,17 +435,19 @@ mark_enter.pack()
 Label(window_upload_mark, text="").pack()
 Label(window_upload_mark, text="Comfirm identity").pack()
 
-# email = StringVar()
-etiqueta_email = Label(window_upload_mark, text="Email * ")
-etiqueta_email.pack()
-email_enter = Entry(window_upload_mark, textvariable=email)
-email_enter.pack()
+global email_teacher_to_upload
+email_teacher_to_upload = StringVar()
+etiqueta_email_teacher_to_upload = Label(window_upload_mark, text="Email * ")
+etiqueta_email_teacher_to_upload.pack()
+email_teacher_to_upload_enter = Entry(window_upload_mark, textvariable=email_teacher_to_upload)
+email_teacher_to_upload_enter.pack()
 
-# password = StringVar()
-etiqueta_password = Label(window_upload_mark, text="Password * ")
-etiqueta_password.pack()
-password_enter = Entry(window_upload_mark, textvariable=password, show='*')
-password_enter.pack()
+global password_teacher_to_upload
+password_teacher_to_upload = StringVar()
+etiqueta_password_teacher_to_upload = Label(window_upload_mark, text="Password * ")
+etiqueta_password_teacher_to_upload.pack()
+password_teacher_to_upload_enter = Entry(window_upload_mark, textvariable=password_teacher_to_upload, show='*')
+password_teacher_to_upload_enter.pack()
 
 Label(window_upload_mark, text="").pack()
 
