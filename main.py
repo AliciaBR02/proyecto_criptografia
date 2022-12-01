@@ -380,7 +380,7 @@ Button(window_add_mark, text = 'Add', height="2", width="20", bg=accept_color, c
 global window_upload_mark
 window_upload_mark = Frame(window_principal)
 window_upload_mark.config(width=300, height=250)
-subjects_mark = Listbox(window_add_mark, selectmode=SINGLE)
+subjects_mark = Listbox(window_upload_mark, selectmode=SINGLE)
 
 # list of subjects
 lists_subjects = ["Mathematics", "Physics", "Chemistry", "Biology", "Language", "English", "French", "German", "History", "Geography", "Philosophy", "Economics", "Technical Drawing", "Computer Science", "Physical Education", "Religion"]
@@ -388,49 +388,49 @@ for i in lists_subjects:
     subjects_mark.insert(END, i)
 
 # Add mark form
-Label(window_add_mark, text="Please enter the mark below").pack()
-Label(window_add_mark, text="").pack()
+Label(window_upload_mark, text="Please enter the mark below").pack()
+Label(window_upload_mark, text="").pack()
 
-etiqueta_subjects = Label(window_add_mark, text="Subject * ")
+etiqueta_subjects = Label(window_upload_mark, text="Subject * ")
 etiqueta_subjects.pack()
 subjects_mark.pack()
 
 global email_student_to_upload
 email_student_to_upload = StringVar()
-email_student_to_upload_exam = Label(window_add_mark, text="Student * ")
+email_student_to_upload_exam = Label(window_upload_mark, text="Student * ")
 email_student_to_upload_exam.pack()
-email_student_to_upload_enter = Entry(window_add_mark, textvariable=email_student_to_upload)
+email_student_to_upload_enter = Entry(window_upload_mark, textvariable=email_student_to_upload)
 email_student_to_upload_enter.pack()
 
-etiqueta_exam = Label(window_add_mark, text="Exam * ")
+etiqueta_exam = Label(window_upload_mark, text="Exam * ")
 etiqueta_exam.pack()
-exam_enter = Entry(window_add_mark, textvariable=exam)
+exam_enter = Entry(window_upload_mark, textvariable=exam)
 exam_enter.pack()
 
-etiqueta_mark = Label(window_add_mark, text="Mark * ")
+etiqueta_mark = Label(window_upload_mark, text="Mark * ")
 etiqueta_mark.pack()
-mark_enter = Entry(window_add_mark, textvariable=mark)
+mark_enter = Entry(window_upload_mark, textvariable=mark)
 mark_enter.pack()
 
-Label(window_add_mark, text="").pack()
-Label(window_add_mark, text="Comfirm identity").pack()
+Label(window_upload_mark, text="").pack()
+Label(window_upload_mark, text="Comfirm identity").pack()
 
 # email = StringVar()
-etiqueta_email = Label(window_add_mark, text="Email * ")
+etiqueta_email = Label(window_upload_mark, text="Email * ")
 etiqueta_email.pack()
-email_enter = Entry(window_add_mark, textvariable=email)
+email_enter = Entry(window_upload_mark, textvariable=email)
 email_enter.pack()
 
 # password = StringVar()
-etiqueta_password = Label(window_add_mark, text="Password * ")
+etiqueta_password = Label(window_upload_mark, text="Password * ")
 etiqueta_password.pack()
-password_enter = Entry(window_add_mark, textvariable=password, show='*')
+password_enter = Entry(window_upload_mark, textvariable=password, show='*')
 password_enter.pack()
 
-Label(window_add_mark, text="").pack()
+Label(window_upload_mark, text="").pack()
 
 # Add mark button
-Button(window_add_mark, text = 'Add', height="2", width="20", bg=accept_color, command=upload_mark).pack()
+Button(window_upload_mark, text = 'Add', height="2", width="20", bg=accept_color, command=upload_mark).pack()
 
 
 
