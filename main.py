@@ -16,7 +16,7 @@ def register():
     if window_login:
         window_login.forget()
 
-def sign_up():
+def sign_up_st():
     """Sign up function"""
     # Get data from entry fields
     name = name_enter.get()
@@ -24,7 +24,7 @@ def sign_up():
     email = email_enter.get()
     password = password_enter.get()
     subjects_selected = []
-    role = role_enter.get(role_enter.curselection())
+    role = "Student"
     # Get selected subjects
     selected_indices = subjects.curselection()
     subjects_selected = [str(subjects.get(i)) for i in selected_indices]
@@ -34,6 +34,27 @@ def sign_up():
     messagebox.showinfo("Register", register)
     if register == "You have been registered successfully":
         window_student.pack()
+        window_home.forget()
+        window_register.forget()
+
+def sign_up_teacher():
+    """Sign up function"""
+    # Get data from entry fields
+    name = name_enter.get()
+    surname = surname_enter.get()
+    email = email_enter.get()
+    password = password_enter.get()
+    subjects_selected = []
+    role = "Teacher"
+    # Get selected subjects
+    selected_indices = subjects.curselection()
+    subjects_selected = [str(subjects.get(i)) for i in selected_indices]
+    # Register user
+    register = Registration(name, surname, email, password, subjects_selected, role).register_teacher()
+    # Show message
+    messagebox.showinfo("Register", register)
+    if register == "You have been registered successfully":
+        window_teacher.pack()
         window_home.forget()
         window_register.forget()
 
@@ -72,7 +93,7 @@ def add_mark():
     exam = exam_enter.get()
     mark = mark_enter.get()
     password = password_enter.get()
-    email_student = email_student.get()
+    # email_student = email_student.get()
     # Get selected subject
     subject_add = subjects_mark.get(subjects_mark.curselection())
     mark_manager = MarksManager()
@@ -174,9 +195,11 @@ password_enter = Entry(window_login, textvariable=password, show='*')
 password_enter.pack()
 
 etiqueta_role = Label(window_login, text="Role * ")
+etiqueta_role.pack()
 role_enter = Listbox(window_login, height=2, selectmode=SINGLE)
 role_enter.insert(1, "Student")
 role_enter.insert(2, "Teacher")
+role_enter.pack()
 
 Label(window_login, text="").pack()
 
@@ -215,6 +238,13 @@ etiqueta_email.pack()
 email_enter = Entry(window_register, textvariable=email)
 email_enter.pack()
 
+etiqueta_role = Label(window_register, text="Role * ")
+etiqueta_role.pack()
+role_enter = Listbox(window_register, height=2, selectmode=SINGLE)
+role_enter.insert(1, "Student")
+role_enter.insert(2, "Teacher")
+role_enter.pack()
+
 etiqueta_password = Label(window_register, text="Password * ")
 etiqueta_password.pack()
 password_enter = Entry(window_register, textvariable=password, show='*')
@@ -227,7 +257,9 @@ subjects.pack()
 Label(window_register, text="").pack()
 
 # Sign up button
-Button(window_register, text="Sign up", height="2", width="20", bg=accept_color, command=sign_up).pack()
+Button(window_register, text="Student", height="2", width="20", bg=accept_color, command=sign_up_st).pack()
+Button(window_register, text="Teacher", height="2", width="20", bg=accept_color, command=sign_up_teacher).pack()
+
 
 # --------------------- STUDENT ----------------------
 # Create student window
@@ -255,7 +287,7 @@ Label(window_teacher, text="").pack()
 # Select between add mark,  search marks and upload marks
 Button(window_student, text="Search", height="2", width="20", bg=accept_color, command=page_search).pack()
 Button(window_teacher, text="Add mark", height="2", width="20", bg=accept_color, command=add_nota).pack()
-Button(window_teacher, text = 'Upload marks', height="2", width="20", bg=accept_color, command=upload_mark).pack()
+# Button(window_teacher, text = 'Upload marks', height="2", width="20", bg=accept_color, command=upload_mark).pack()
 
 #--------------------- SEARCH ----------------------
 # Create search window

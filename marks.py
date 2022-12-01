@@ -68,6 +68,9 @@ class MarksManager:
         with open(file_name, "w") as file:
             file.write(str(marks))
         return marks
+    
+    def student_view_marks(self, email_student, password, subject):
+        ...
 
 # primero escribir las notas -> para decriptarlas, necesitamos que el profesor diga "quiero subirlas"
 # para ello, el estudiante lo solicita, y el profesor lo acepta
@@ -102,6 +105,8 @@ class MarksManager:
         s = SignVerification()
         public_key = self.search_public_key(email_teacher)
         return s.verify_signature(public_key, "database/" + email_student + "_" + subject + "_signed.txt")
+
+
 # CÓMO FUNCIONA LA FIRMAR Y VERIFICAR
 # 1. (add_mark) El profesor genera un archivo con las notas del estudiante
 # 2. El profesor firma el archivo con su clave privada -> ARCHIVO FIRMADO = mensaje + firma al final

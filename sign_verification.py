@@ -110,6 +110,8 @@ class SignVerification:
         # decoded_signature = signature.decode('utf-8')
         # then we add the signature at the end of the file
         # remove '.txt' from the file name
+        # print("THIS IS THE Message:")
+        # print(bdata)
         with open(input_file[:-4] + "_signed.txt", 'ab') as file:
             file.write(signature)
     
@@ -119,15 +121,15 @@ class SignVerification:
             data = file.read()
         # then we read the signature from the end of the file
         signature = data[-256:]
-        print("THIS IS THE SIGNATURE:")
-        print(signature)
-        print("THIS IS THE MESSAGE:")
-        print(data[:-256])
+        # print("THIS IS THE SIGNATURE:")
+        # print(signature)
+        # print("THIS IS THE MESSAGE:")
+        # print(data[:-257])
         # finally we verify the signature
         try:
             public_key.verify(
                 signature,
-                data[:-256],
+                data[:-257],
                 padding.PSS(
                     mgf=padding.MGF1(hashes.SHA256()),
                     salt_length=padding.PSS.MAX_LENGTH
