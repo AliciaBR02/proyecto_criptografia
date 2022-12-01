@@ -20,6 +20,7 @@ class MarksManager:
 
     # funcion para el profesor
     def add_mark(self, email_teacher, password, email_student, subject, exam, mark):
+        # print(email_teacher, password, email_student, subject, exam, mark)
         """Add a mark to the database"""
         mark_data = json_manager.JsonManager("database/marks_database.json")
         # check the values entered and check that the student is registered

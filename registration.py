@@ -9,22 +9,22 @@ from student import Student
 from teacher import Teacher
  
 class Registration:
-    def __init__(self, name, surname, email, password, subjects, role):
+    def __init__(self, name, surname, email, password, subjects):
         # check that all the attributes are valid
         self.name = Name(name).value
         self.surname = Surname(surname).value
         self.email = Email(email).value
         self.password = Password(password).value
         self.subjects_list = self.subject_list(subjects)
-        self.role = Role(role).value
+        # self.role = Role(role).value
         # save all the data in the database
-        self.data = self.load_data()
+    #     self.data = self.load_data()
         
-    def load_data(self):
-        if self.role == 'Student':
-            return JsonManager("database/students_database.json").data
-        else:
-            return JsonManager("database/teachers_database.json").data
+    # def load_data(self):
+    #     if self.role == 'Student':
+    #         return JsonManager("database/students_database.json").data
+    #     else:
+    #         return JsonManager("database/teachers_database.json").data
 
     def subject_list(self, subjects):
         """check that all the entered subjects are valid"""
@@ -38,25 +38,47 @@ class Registration:
     def register_student(self):
         """register the student in the database"""
         # check if the email is already registered
-        for i in range(len(self.data)):
-            if self.email == self.data[i]["email"]:
+        data = JsonManager("database/students_database.json").data
+        for i in range(len(data)):
+            if self.email == data[i]["email"]:
                 return "The email is already registered"
         # if not registered, register the student
-        if self.name == "name is not valid" or self.surname == "surname is not valid" or self.email == "email is not valid" or self.password == "password is not valid" or self.subjects_list == []:
-            return "Invalid input"
+        # check that all the attributes are valid one by one
+        
+        if self.name == "name is not valid":
+            return "name is not valid"
+        if self.surname == "surname is not valid":
+            return "surname is not valid"
+        if self.email == "email is not valid":
+            return "Invalid email"
+        if self.password == "password is not valid":
+            return "Invalid password"
+        if self.subjects_list == []:
+            return "Invalid subjects"
+    
         st = Student(self.name, self.surname, self.email, self.password, self.subjects_list)
         st.register()
         return "You have been registered successfully"
 
     def register_teacher(self):
         """register the teacher in the database"""
+        data = JsonManager("database/teachers_database.json").data
         # check if the email is already registered
-        for i in range(len(self.data)):
-            if self.email == self.data[i]["email"]:
+        for i in range(len(data)):
+            if self.email == data[i]["email"]:
                 return "The email is already registered"
         # if not registered, register the student
-        if self.name == "name is not valid" or self.surname == "surname is not valid" or self.email == "email is not valid" or self.password == "password is not valid" or self.subjects_list == []:
-            return "Invalid input"
+        # check that all the attributes are valid one by one
+        if self.name == "name is not valid":
+            return "name is not valid"
+        if self.surname == "surname is not valid":
+            return "surname is not valid"
+        if self.email == "email is not valid":
+            return "Invalid email"
+        if self.password == "password is not valid":
+            return "Invalid password"
+        if self.subjects_list == []:
+            return "Invalid subjects"
         t = Teacher(self.name, self.surname, self.email, self.password, self.subjects_list)
         t.register()
         return "You have been registered successfully"
