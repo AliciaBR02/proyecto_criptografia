@@ -6,9 +6,6 @@ from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from cryptography.hazmat.primitives import hashes
 import base64
 
-
-
-
 class PasswordSecure:
     def __init__(self, password):
         # create a random salt

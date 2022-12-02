@@ -16,14 +16,7 @@ class SignVerification:
             key_size=2048,
         )
         return private_key
-    # def write_private_key_file(self, private_key, mail):
-    #     pem = private_key.private_bytes(
-    #         encoding=serialization.Encoding.PEM,
-    #         format=serialization.PrivateFormat.TraditionalOpenSSL,
-    #         encryption_algorithm=serialization.NoEncryption()
-    #     )
-    #     with open("database/private_keys/private_key_"+mail+".pem", "wb") as f:
-    #         f.write(pem)
+
     def encrypt_private_key(self, private_key, password):
         # Encrypt the private key
         pem = private_key.private_bytes(
@@ -67,9 +60,7 @@ class SignVerification:
         return signature
 
     def generate_certificate(self, private_key, mail:str):
-        # subject is the student
         subject = issuer = x509.Name([ x509.NameAttribute(NameOID.COMMON_NAME, mail) ])
-        
         cert = x509.CertificateBuilder().subject_name(
             subject
         ).issuer_name(
@@ -88,30 +79,16 @@ class SignVerification:
             critical=False,
         # Sign our certificate with our private key
         ).sign(private_key, hashes.SHA256())
-        # Write our certificate out to disk.
         with open("database/certificates/certificate_"+mail+".pem", "wb") as f:
             f.write(cert.public_bytes(serialization.Encoding.PEM))
             
-    # method that will save the message with the signature at the end in a new file input_signed.txt
     def sign_message(self, private_key, input_file):
         # first we copy the message from input_file into a new file input_signed.txt
         with open(input_file, 'r') as file:
             data = file.read()
-        # convert to bytes-like object
         bdata = data.encode('utf-8')
-        # with open(input_file[:-4] + ".txt", 'wb') as file:
-        #     # write the message and add a new line
-        #     file.write(bdata + b'\n')
         # now we create the signature from the message and the private key
         signature = self.create_signature(bdata, private_key)
-        # decode the signature to string
-        # s = bytearray(signature)
-        # s.extend(bytes(serialized, 'utf-8'))
-        # decoded_signature = signature.decode('utf-8')
-        # then we add the signature at the end of the file
-        # remove '.txt' from the file name
-        # print("THIS IS THE Message:")
-        # print(bdata)
         with open(input_file[:-4] + ".txt", 'ab') as file:
             file.write(signature)
     
@@ -120,16 +97,10 @@ class SignVerification:
         try:
             with open(input_file, 'rb') as file:
                 data = file.read()
-                print("all data")
-        except: #no file found
+        except: # no file found
             return "No marks were uploaded"
         # then we read the signature from the end of the file
         signature = data[-256:]
-        # print("THIS IS THE SIGNATURE:")
-        # print(signature)
-        # print("THIS IS THE MESSAGE:")
-        # print(data[:-257])
-        # finally we verify the signature
         try:
             public_key.verify(
                 signature,
@@ -140,15 +111,6 @@ class SignVerification:
                 ),
                 hashes.SHA256()
             )
-            print("The signature is valid.")
             return "The signature is valid."
         except:
-            print("The signature is not valid.")
             return "The signature is not valid."
-        
-# s = SignVerification()
-# private_key = s.generate_private_key()
-# s.generate_certificate(private_key, "adam@adam.es")
-# s.sign_message(private_key, 'input.txt')
-# public_key = s.generate_public_key(private_key)
-# s.verify_signature(public_key, 'input_signed.txt')

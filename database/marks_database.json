@@ -1,68 +1,38 @@
 [
     {
         "subject": "Mathematics",
-        "email": "gAAAAABjic53eIG_x5wVoGM0E24lYqIuK1R90OaQjUqOkeoBjMnr5n_sHYvmghmRcHIT31FCV7wIMSFUNJq8I7ia6tnd7-WTcsyDzGzHM1j5qtKmQAU5X4M=",
+        "email": "gAAAAABjijQQeqGQLvRCHnxOWRLSo8nOjrYxNyhvT6uTEB2wLnnHORML0dRRfNf3n7Lkc5f-CjLXKECKGft557NLxAaCvq19R5oDNHjZcDXBFjEihjN8cmw=",
         "exam": "parcial",
-        "mark": "gAAAAABjic53VDWFK4CCtni4AguZtUbBFN9FnqvVAPN6Hh2IZcHf3rEHpLWyFqPriXUl8RL_1IGJLoKjsklaaovVy6vbW3Pp0w=="
+        "mark": "gAAAAABjijQQ7sa-3NXVIxl_XEUcybJ0SlxsIwzkHYI06-ubs8KPzULRxDqg_c76cS99INUYxIX03aaV4d7Cpv-kiNOnwDK0vA=="
     },
     {
         "subject": "Mathematics",
-        "email": "gAAAAABjic6omc6o1PO44Zw_44ZGr1mSdyRz0MxN6u5e112fCBgpsUzy6yYsIJz33hRxP6tSeD5l10gVzSoK-WslMw1Pz5kJb3vIoE28-ZpEqoEukdjQsys=",
-        "exam": "parcial",
-        "mark": "gAAAAABjic6o-Ox-qvH8KN-YgYUDcRiBx_zA7nQfsP6h1iP7tmEJmUjFtX8KZN8vVV4-yh712Kv0f1aXfJaLF1T0KKVXIZLdSg=="
-    },
-    {
-        "subject": "Mathematics",
-        "email": "gAAAAABjic_Ds3CT6XQZyJFqNsj_XRwvJzy3F2OPHONal-yYzAAr_mN-ruZPKR3ldi6azAoOo0VAtz3ArM1yyH5R1pMXhYOU-FhqbWk0L3BsSiCZ-SmLeAk=",
-        "exam": "parcial",
-        "mark": "gAAAAABjic_D_lrqKzDU_CD05Z-N7aCI0Y5ZIe4PZQAKWyan8BwHvTXJNoj32qx3d8fEQnhakgDCeQJsAvAA2u6W3ycoVrqM-Q=="
-    },
-    {
-        "subject": "Mathematics",
-        "email": "gAAAAABjidANsgE1Mdp92wuhFw3bg4ZJT24aLUsKYRrJT62a9TUvHw7J1-Nsan5IyZkmwpoJiXjF4sS1tUCe-KBuRmrXIcgujXDMsQDhwk5PlXDBuVdh_FU=",
-        "exam": "parcial",
-        "mark": "gAAAAABjidAN3ZasvTqE6HHafbN7QyuTAkUGI7z6m9-0rd_Ivc9cKNlVL6slyPLSOJ01dJMJyup2TsHEg1dpOSCturmYi4Dwng=="
-    },
-    {
-        "subject": "Mathematics",
-        "email": "gAAAAABjidA0G0kwWCy9wsuCYMOcqI3gsjodr3WvJ5FbVHH1ua1hx5p-l5M33cOoTc69a7xf814lJldDT0_V2TKQzbUIE9nWeLxalHxvNsDfQsHzbA4tR7w=",
-        "exam": "parcial",
-        "mark": "gAAAAABjidA0NkalofCcXsnjp9WqVLkI-OW27i8od0SaOyu0unpn-l8y0p4YrlC3L6sGCd6WTPz-cZVve6soe002hQRMQi_Xag=="
-    },
-    {
-        "subject": "Mathematics",
-        "email": "gAAAAABjidA-tvgUXq76G7e9LEQQWeYloVpY51HDKDR2LvnG6Xb9-hwfNWA3xj63GwTEMr7HqR7vWmWBe671-azbTFwX-cScGq0sj1nk8CuMNqP-NUe2210=",
-        "exam": "parcial",
-        "mark": "gAAAAABjidA-11lDkhD_KM97-Cou4GssLo5WW7uYLWbGLcdsvwDvOcty6fK4qqyhx2y_430zc4PsBFvsgZKHP7UUgVTTgCdf9w=="
-    },
-    {
-        "subject": "Mathematics",
-        "email": "gAAAAABjidFWEmCM0qBSLzjNZnXlEnJnujjWHAuKwB0-BTlyh9JOxxpbdM25VOyNHHmd_zKXgmgMqtR31ktFTAWdzm9G2Y-QLr3Qf25UU9NnJ3MmpIGiIbM=",
-        "exam": "parcial",
-        "mark": "gAAAAABjidFWIeRsb4OJLYtti76qc8AtLaMEllvAj0mlaPs_9MMku8p6WOpwPI_opVKaRapnxtSLQNKig49dD_icQVyEyGiKeA=="
-    },
-    {
-        "subject": "Mathematics",
-        "email": "gAAAAABjidFeCC3qWOgGxRrVrEL4qpeDLQob6jygNqMbxFfdslAtPPcOeZQUN1e2aTgwsiYGU0Ra5cAZvGh8hDMUIYVlKQM2SCz66P7mRC9DDl9cx5LrAOw=",
-        "exam": "parcial",
-        "mark": "gAAAAABjidFeMWD_LrmiLbqo-K4FnwgQrtfDw1gte2hUJldF8map-IHb1rxLblTysavQIHyhIG18C6dlSZB8ceoK6i_VNBJNBA=="
-    },
-    {
-        "subject": "Mathematics",
-        "email": "gAAAAABjidIu23SQk9iavVNYUag9P_R2-3iaaMOqAb8BBDWkljvDxeUUGSjVC0E1hqhFSBf384LEhBi_J6KbeYqXpAOSUIedMQOAl0uV_ukwsdtnYazrfAo=",
-        "exam": "parcial",
-        "mark": "gAAAAABjidIuf5943Vq3PucKxaJ5U4V9luYkFRQqgVjzbfIYqRNNei7fM-5HFDuvlx55LpVQJJwqTBPQMt2fCgvxkvXEmch7vg=="
-    },
-    {
-        "subject": "Mathematics",
-        "email": "gAAAAABjidQ1SzPk7eetNJH9wa6AZAx0d6kgOvAMkoGP2vcjNQeTGaJstVGwIG9ZitID2FZa2tM3d24ik--bY9-vIh83HQKjPvHnWWlsc04zoXSrpHKLHOw=",
+        "email": "gAAAAABjijQQ0-BHPIo5H6S2Era6yldfzw8VUyUVNFxuI0eVFnOwCKJqO7sxNAPX_OxZEdg_gAbbMPEssnE9PZ5BvDwaNDHxmsNAjWj_zg87ID1J6r1un4s=",
         "exam": "exam1",
-        "mark": "gAAAAABjidQ1BCptxNa3kzk1XdzSgSJOz45KpgfPdz4Rhd7AbVLMHxmjN4wXRzTPXu6VjnrqnrWzxe2tALAXJ5bS6KZUe-MsRg=="
+        "mark": "gAAAAABjijQQaRwdgBTF_EmSA-Ro5f4TmupiTGv4l1tmNcfJ7_wa4dm7j52e5MRySTBdhZahtvVem8C_sHlHZWAKOjrFzteqVQ=="
     },
     {
         "subject": "Mathematics",
-        "email": "gAAAAABjidZi1l5NYlWeuu7_Nhtdw5kY7y5N3lSBbq94FzE3FkHea0E-TqyhRnQNPxKb3A0AsuUeO57EfwY1nyPRKw03yn9-Wf53hEe3xnGxUbRjNvZkrsg=",
+        "email": "gAAAAABjijQQ5pluUZ6LKQucZ8xrnjz3hr0EmjiV7cjOvwXeUUwuM07flOVtIQowetCoy2Z2buk6s8ETAxi1VsObCjSzQpIrvn16cMMZsS3lCIv7BcRW1Uo=",
         "exam": "exam2",
-        "mark": "gAAAAABjidZifH9Y6-M1GU2MUtrRKDYg-0T_GdzhCdWEUS_YOAeTqruHwnodedzNSBV1qGCv7bC2yOAAW9NMbhb5NUt7jV8Ahw=="
+        "mark": "gAAAAABjijQRU5ra1vJn3j-_0maFct_y22q2FaqzHEY11ai5Jl_UPYICpIvLJg6guqOJD_jso-aDI5n39WVSh23r_8zQaPJWKw=="
+    },
+    {
+        "subject": "Mathematics",
+        "email": "gAAAAABjijQqfxogreeD_U6sWmtf20nfwBRb9lSJ8W3GjomEcmM7V8OlJfQZjYD_5iq69--7ipsHYWZ1Yd7T0pH_gdXr9dFTi2OXrL5b6BkWacYE22bOKkk=",
+        "exam": "parcial",
+        "mark": "gAAAAABjijQqxEDRPxlIEeqQ9zFG3Y84-xWETtJg0G5y9I_dFEr4ZV7iyfg4gm5EUjAmn4VFKFkz9sV0ht1ZMT6IYpSz_Ss9WA=="
+    },
+    {
+        "subject": "Mathematics",
+        "email": "gAAAAABjijQqhmr2mYW2bigM8gj7iVlAtW6_-w-RQDmt_itVfkvO1DnhlJh6ZHYm1uEC4_wR_vq06zBVaNNoPC4UWSRhnjU7Hd-SlbtJ27DeBccn4jU0Tx8=",
+        "exam": "exam1",
+        "mark": "gAAAAABjijQrSwCvkFXXw1jOFbvk9CVBKR2Uklndtlw10nSvFscdyDkzebRhhBiUqqFK5Bh12PTF5sYkOXO2SG_TM3vV4Gc0eQ=="
+    },
+    {
+        "subject": "Mathematics",
+        "email": "gAAAAABjijQrJi7liV4mYIGgOHzOx0l9nmb7CQLN9qSDbHBokjhZcuqFiZ40ykFieTndbvIKFd0yaV4wKetuZkDd7IhWEiFJjZOwqZBd4BxW-tBv_mHMmrA=",
+        "exam": "exam2",
+        "mark": "gAAAAABjijQrYJeMTpNSXXW_ccBv4nI3CMj1hiB8qfjwPlRVi9eYFcidfMO0GTtm_XtxaEsxuSld12wH47bPrqv52YHzppDL7A=="
     }
 ]

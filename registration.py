@@ -16,15 +16,7 @@ class Registration:
         self.email = Email(email).value
         self.password = Password(password).value
         self.subjects_list = self.subject_list(subjects)
-        # self.role = Role(role).value
-        # save all the data in the database
-    #     self.data = self.load_data()
         
-    # def load_data(self):
-    #     if self.role == 'Student':
-    #         return JsonManager("database/students_database.json").data
-    #     else:
-    #         return JsonManager("database/teachers_database.json").data
 
     def subject_list(self, subjects):
         """check that all the entered subjects are valid"""
@@ -42,9 +34,6 @@ class Registration:
         for i in range(len(data)):
             if self.email == data[i]["email"]:
                 return "The email is already registered"
-        # if not registered, register the student
-        # check that all the attributes are valid one by one
-        
         if self.name == "name is not valid":
             return "name is not valid"
         if self.surname == "surname is not valid":
@@ -55,7 +44,6 @@ class Registration:
             return "Invalid password"
         if self.subjects_list == []:
             return "Invalid subjects"
-    
         st = Student(self.name, self.surname, self.email, self.password, self.subjects_list)
         st.register()
         return "You have been registered successfully"

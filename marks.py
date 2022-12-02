@@ -6,7 +6,6 @@ from attribute.exam import Exam
 from encryption import Encryption
 from sign_verification import SignVerification
 
-
 class MarksManager:
     def __init__(self):
         self.subject = ""
@@ -15,12 +14,7 @@ class MarksManager:
         self.mark = ""
         pass
 
-# base de datos - cif sim
-# usuario pide algo -> se genera archivo y se pone la vaina de firma y verificación
-
-    # funcion para el profesor
     def add_mark(self, email_teacher, password, email_student, subject, exam, mark):
-        # print(email_teacher, password, email_student, subject, exam, mark)
         """Add a mark to the database"""
         mark_data = json_manager.JsonManager("database/marks_database.json")
         # check the values entered and check that the student is registered
@@ -43,15 +37,13 @@ class MarksManager:
             if student["email"] == email and subject in student["subjects"]:
                 return True
         return False
-    
-    #check teacher subject
+
     def check_teacher_subject(self, email_teacher, password, subject):
         """Check if the teacher is registered in the subject"""
         teachers_data = json_manager.JsonManager("database/teachers_database.json").data
         for teacher in teachers_data:
             if teacher["email"] == email_teacher and subject in teacher["subjects"]:
                 return True
-
         return False
     
     def get_marks(self, email_teacher, password, email_student, subject):
@@ -70,25 +62,18 @@ class MarksManager:
                     student_marks.append({"subject": mark["subject"], "exam": mark["exam"], "mark": mark_dec})
             except:
                 pass
-                
         return student_marks
     
     def write_marks(self, email_teacher, password, email_student, subject):
         """Write the marks of the student"""
         marks = self.get_marks(email_teacher, password, email_student, subject)
         if len(marks) == 0:
-            return "The student has no marks yet"  
-        # write marks in a file
-        # create the file if it does not exist, and write it if it does
+            return "The student has no marks yet"
         file_name = "database/" + email_student + "_" + subject + ".txt"
         with open(file_name, "w") as file:
             file.write(str(marks))
         return  "Marks written successfully"
 
-
-# primero escribir las notas -> para decriptarlas, necesitamos que el profesor diga "quiero subirlas"
-# para ello, el estudiante lo solicita, y el profesor lo acepta
-# ahora el estudiante recibirá el archivo con las notas decriptadas -> tendrá que verificar la firma con su clave privada
     def sign_marks(self, email_teacher, password, email_student, subject):
         """Sign the marks of the student"""
         written = self.write_marks(email_teacher, password, email_student, subject)
@@ -105,19 +90,16 @@ class MarksManager:
         for teacher in teachers_data:
             if teacher["email"] == email:
                 return SignVerification().decrypt_private_key(teacher["private_key"].encode('utf-8'), password)
-                
         return "The teacher is not registered"
-    # verify with publick key of teacher
+
     def search_public_key(self, email):
         """Search the public key of the teacher"""
         teachers_data = json_manager.JsonManager("database/teachers_database.json").data
         for teacher in teachers_data:
             if teacher["email"] == email:
                 return SignVerification().deserialize_public_key(teacher["public_key"].encode('utf-8'))
-
         return "The teacher is not registered"
-    
-    
+
     def verify_signed_marks(self, email_teacher, email_student, subject):
         """Verify the marks of the student"""
         s = SignVerification()
@@ -131,29 +113,17 @@ class MarksManager:
             print(verification)
             return "No marks to show"
         file_name = "database/" + email_student + "_" + subject + ".txt"
-        # read file without reading signature (last 256 bytes)
         with open(file_name, "rb") as file:
             data = file.read()[:-256]
-        print(data.decode('utf-8'))
-        #add data to list
-        return data.decode('utf-8')
-
-# CÓMO FUNCIONA LA FIRMAR Y VERIFICAR
-# 1. (add_mark) El profesor genera un archivo con las notas del estudiante
-# 2. El profesor firma el archivo con su clave privada -> ARCHIVO FIRMADO = mensaje + firma al final
-# 3. (database) El profesor envía el archivo firmado al estudiante 
-# 4. (get_mark) El estudiante verifica la firma con la clave pública del profesor
-# 5. Si la firma es correcta, el estudiante puede ver las notas
-# 6. Si la firma es incorrecta, el estudiante no puede ver las notas
-
-# 7. El profesor puede ver las notas de todos los estudiantes
-# 8. El estudiante puede ver sus notas
-# 9. El estudiante no puede ver las notas de otros estudiantes
-
-# mark = MarksManager()
-# result = (mark.add_mark("profesor@mail.com", "1234", "estudiante@mail.com", "Mathematics", "parcial", 10))
-# print('///////////////////////////////////////////')
-# print(result)
-# print('///////////////////////////////////////////')
-# mark.sign_marks("profesor@mail.com", "1234", "estudiante@mail.com", "Mathematics")
-# print(mark.show_marks("profesor@mail.com", "estudiate@mail.com", "Mathematics"))
+        data = data.decode('utf-8')
+        marks = []
+        data = data.split("[")
+        data.pop(0)
+        data = data[0].split("},")
+        for mark in data:
+            marks.append(mark + "}")
+        marks = marks[:-1]
+        mark_show = []
+        for mark in marks:
+            mark_show.append(mark[(16+len(subject)):-1] )
+        return mark_show

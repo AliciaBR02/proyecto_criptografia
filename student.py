@@ -14,19 +14,13 @@ class Student:
         self.subjects = subjects
         s = SignVerification()
         private_key = s.generate_private_key()
+        # we encrypt the keys to save them later into the database
         self.private_key = s.encrypt_private_key(private_key, password).decode('utf-8')
         public_key = s.generate_public_key(private_key)
         self.public_key = s.encrypt_public_key(public_key).decode('utf-8')
         s.generate_certificate(private_key, email)
         
-
-        
-    
     def register(self):
         # save the data in the student database
         database = json_manager.JsonManager('database/students_database.json')
         database.add_item(self)
-
-
-s = Student('Juan', 'Perez', 'estudiante@mail.com', '1234', ['Mathematics', 'Physics'])
-s.register()
