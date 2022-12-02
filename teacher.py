@@ -34,5 +34,5 @@ class Teacher:
         encrypted_key = Encryption(self.email, password).encrypt(key)
         return encrypted_key
 
-# t = Teacher('Juan', 'Perez', 'profesor@mail.com', '1234', ['Mathematics', 'Physics'])
-# t.register()
+t = Teacher('Juan', 'Perez', 'profesor@mail.com', '1234', ['Mathematics', 'Physics'])
+t.register()

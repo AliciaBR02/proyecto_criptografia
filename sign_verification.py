@@ -99,9 +99,9 @@ class SignVerification:
             data = file.read()
         # convert to bytes-like object
         bdata = data.encode('utf-8')
-        with open(input_file[:-4] + "_signed.txt", 'wb') as file:
-            # write the message and add a new line
-            file.write(bdata + b'\n')
+        # with open(input_file[:-4] + ".txt", 'wb') as file:
+        #     # write the message and add a new line
+        #     file.write(bdata + b'\n')
         # now we create the signature from the message and the private key
         signature = self.create_signature(bdata, private_key)
         # decode the signature to string
@@ -112,13 +112,17 @@ class SignVerification:
         # remove '.txt' from the file name
         # print("THIS IS THE Message:")
         # print(bdata)
-        with open(input_file[:-4] + "_signed.txt", 'ab') as file:
+        with open(input_file[:-4] + ".txt", 'ab') as file:
             file.write(signature)
     
     def verify_signature(self, public_key, input_file):
         # first we read the message from input_file
-        with open(input_file, 'rb') as file:
-            data = file.read()
+        try:
+            with open(input_file, 'rb') as file:
+                data = file.read()
+                print("all data")
+        except: #no file found
+            return "No marks were uploaded"
         # then we read the signature from the end of the file
         signature = data[-256:]
         # print("THIS IS THE SIGNATURE:")
@@ -129,7 +133,7 @@ class SignVerification:
         try:
             public_key.verify(
                 signature,
-                data[:-257],
+                data[:-256],
                 padding.PSS(
                     mgf=padding.MGF1(hashes.SHA256()),
                     salt_length=padding.PSS.MAX_LENGTH
@@ -137,8 +141,10 @@ class SignVerification:
                 hashes.SHA256()
             )
             print("The signature is valid.")
+            return "The signature is valid."
         except:
             print("The signature is not valid.")
+            return "The signature is not valid."
         
 # s = SignVerification()
 # private_key = s.generate_private_key()

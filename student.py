@@ -28,5 +28,5 @@ class Student:
         database.add_item(self)
 
 
-# s = Student('Juan', 'Perez', 'estudiante@mail.com', '1234', ['Mathematics', 'Physics'])
-# s.register()
+s = Student('Juan', 'Perez', 'estudiante@mail.com', '1234', ['Mathematics', 'Physics'])
+s.register()
