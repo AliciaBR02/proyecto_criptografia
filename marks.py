@@ -21,28 +21,20 @@ class MarksManager:
         self.email = Encryption(email_teacher, password).encrypt(Email(email_student).value)
         self.subject = Subjects(subject).value
         self.exam = Exam(exam).value
-        if self.check_teacher_subject(email_teacher, password, self.subject):
-            if mark <= 10 and mark >= 0 and self.check_st_subjects(email_student, subject): # if everything is okay, add the mark into the marks database
+        if self.check_subjects(email_teacher, self.subject):
+            if mark <= 10 and mark >= 0 and self.check_subjects(email_student, subject): # if everything is okay, add the mark into the marks database
                 self.mark = Encryption(email_teacher, password).encrypt(str(mark)) # validate mark
                 mark_data.add_item(self)
                 return "Mark added successfully"
             return "Some of the parameters are not valid"
         return "The teacher is not registered in the subject"
     
-    def check_st_subjects(self, email, subject):
-        """Check if the student is registered in the subject"""
-        students_data = json_manager.JsonManager("database/students_database.json").data
+    def check_subjects(self, email, subject):
+        """Check if the user is registered in the subject"""
+        users_data = json_manager.JsonManager("database/users_database.json").data
     
-        for student in students_data:
-            if student["email"] == email and subject in student["subjects"]:
-                return True
-        return False
-
-    def check_teacher_subject(self, email_teacher, password, subject):
-        """Check if the teacher is registered in the subject"""
-        teachers_data = json_manager.JsonManager("database/teachers_database.json").data
-        for teacher in teachers_data:
-            if teacher["email"] == email_teacher and subject in teacher["subjects"]:
+        for user in users_data:
+            if user["email"] == email and subject in user["subjects"]:
                 return True
         return False
     
@@ -85,19 +77,19 @@ class MarksManager:
         return "Marks uploaded successfully"
 
     def search_private_key(self, email, password):
-        """Search the private key of the teacher"""
-        teachers_data = json_manager.JsonManager("database/teachers_database.json").data
-        for teacher in teachers_data:
-            if teacher["email"] == email:
-                return SignVerification().decrypt_private_key(teacher["private_key"].encode('utf-8'), password)
+        """Search the private key of the user"""
+        users_data = json_manager.JsonManager("database/users_database.json").data
+        for user in users_data:
+            if user["email"] == email:
+                return SignVerification().decrypt_private_key(user["private_key"].encode('utf-8'), password)
         return "The teacher is not registered"
 
     def search_public_key(self, email):
-        """Search the public key of the teacher"""
-        teachers_data = json_manager.JsonManager("database/teachers_database.json").data
-        for teacher in teachers_data:
-            if teacher["email"] == email:
-                return SignVerification().deserialize_public_key(teacher["public_key"].encode('utf-8'))
+        """Search the public key of the user"""
+        users_data = json_manager.JsonManager("database/users_database.json").data
+        for user in users_data:
+            if user["email"] == email:
+                return SignVerification().deserialize_public_key(user["public_key"].encode('utf-8'))
         return "The teacher is not registered"
 
     def verify_signed_marks(self, email_teacher, email_student, subject):
@@ -119,10 +111,11 @@ class MarksManager:
         marks = []
         data = data.split("[")
         data.pop(0)
+        data = data[0].split("}]")
+        data.pop(-1)
         data = data[0].split("},")
         for mark in data:
             marks.append(mark + "}")
-        marks = marks[:-1]
         mark_show = []
         for mark in marks:
             mark_show.append(mark[(16+len(subject)):-1] )

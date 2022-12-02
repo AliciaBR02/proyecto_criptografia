@@ -33,7 +33,7 @@ class Encryption:
     
     def get_key(self, email, password):
         """Function to get the key from the database"""
-        database = JsonManager('database/teachers_database.json')
+        database = JsonManager('database/users_database.json')
         password_database = JsonManager('database/secure_passwords.json').data
         for user in database.data:
             # we look for the email in the database

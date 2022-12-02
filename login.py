@@ -4,27 +4,23 @@ import binascii
 import hashlib
 
 class Login:
-    def __init__(self, email, password, role):
+    def __init__(self, email, password):
         self._email = email
         self._password = password
         self._data = []
-        self.role = role
 
     def login(self):
         """Log a user in the system"""
-        if self.role == 'Student':
-            database = JsonManager('database/students_database.json')
-        else:
-            database = JsonManager('database/teachers_database.json')
+        database = JsonManager('database/users_database.json')
         for user in database.data:
             # look for the entered email
             if user['email'] == self._email:
                 # check if the password is correct (true or false)
                 result = self.check_password(self._password, user['password'])
                 if result:
-                    return 'User logged in successfully'
-                return 'Incorrect password'
-        return 'User not registered'
+                    return 'User logged in successfully', user['role']
+                return 'Incorrect password', None
+        return 'User not registered', None
             
     def check_password(self, password_input, password_real):
         """Check if the password is correct"""

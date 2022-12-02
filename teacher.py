@@ -12,6 +12,7 @@ class Teacher:
         p = PasswordSecure(password)
         self.password = p.hashed_password
         self.subjects = subjects
+        self.role = "Teacher"
         s = SignVerification()
         private_key = s.generate_private_key()
         # we encrypt the keys to save them later into the database
@@ -21,7 +22,7 @@ class Teacher:
 
     def register(self):
         # save the data in the teacher database
-        database = json_manager.JsonManager('database/teachers_database.json')
+        database = json_manager.JsonManager('database/users_database.json')
         database.add_item(self)
         
     def generate_private_key(self, password):

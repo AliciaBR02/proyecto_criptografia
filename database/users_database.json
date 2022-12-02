@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Val",
+        "surname": "Cataldo",
+        "email": "val@email.com",
+        "password": "1bb3d7976e5ec0ec127a93927681877e652cc418a76b6992e9dc640bfa92448a",
+        "subjects": [
+            "Mathematics",
+            "Physics",
+            "Language",
+            "English",
+            "History"
+        ],
+        "role": "Student",
+        "private_key": "-----BEGIN RSA PRIVATE KEY-----\nProc-Type: 4,ENCRYPTED\nDEK-Info: AES-256-CBC,4514BAFE5B3EB04C751FF9C8E06877C7\n\nhxinTB5JhzIkx0ytsS2LaQwr98tJb0RGmyTnofXr37IFDNWOSarnSabXsUYC9dky\nVoJHHKXKyk3W+0j4Q+G+1o0OsJuL2xAFPHNlPMSEwx/S+lKFGdAt2lKoWC1Cubb2\nYYRfS8LxJY6iRcRXXlG4zTk2PUM5WiKdIYm2E5EdsT6iDUq2nmjPXpDyl4gqSfPy\nWglnDjkgjKRRhfqVq3Xd6oNXG+U57bkePirO9rf46ANu44pd3sjw6KNleUAaxhHm\nqJcS0z+yejpSkRbQuffGOpK1MuprmA20BfLh1mEHO+qIDLQyDI3emi0lqYoC32Lj\n7p64NCgvlWTGoL5g0ExXuqTA6O56xOMXNx2AEhJEjG6vVQ0b7i5IXKg5ZI536X14\nz+UflFRpU6xd9//z5ntorAKhkMLQHRyOb1Fo1sqVKWi7bQVBR/9FH1xr2Mbmpla2\nmn7MqOtvzEsVfCMK0bETG3BsJClgap3CmHkZuFmpcWvtvcmGpAqCjefKd2Lepo9V\nEM5the5tgSewd8iFjOnd9CKLsA0dEBV7ucO6iG7Gpe6PQmTqMVcB5DLesColB2VE\nu2szgFm81jlo1pB2nQ3lvUKM2egKANGeMw7b9UnfZUxfZJ2jaA3GZimbyMwfJiQ4\nEc/yceRQoFWSOfVp6Lw9GitUIaK+OWAjJaeVAZLWYEgi23shXdzftCaOnT84/xO8\nNUUq3oG6hCizv3XnnQ+Knbr5DytOCSxRvn4+iLDU1Fpxiz+qB/mX44kJJbshX9sL\n+r1gQRV6HDdX7ou6WuClE0qhH5ipOBXwjBz9Oq/P4ek2oPoXK//+2WvwM0iDmDhT\nQu8/I2SmUTZAzqYWby8E3Buri1jR9lw83p3nPUFFCGlcNTNAS62t6GY5MmmAmEZw\n8lrmlP9nyQWVDRHXP13UFAhbNgtidnwiGSt2URw79GGbNGFCfZ2n2xGPRWvK2vm5\npJ6me3KI2opSh6a8qWl0dq7y254QTMOrgl0oW43ocoqo47U3oG8pWAlgQ+sSmA0s\nZ0JJ4E538+ctNRxt6eLCrbRIhcghQeC6Dl5cURxESDyTr9dfDP8OgUJs94NZoyZF\nA8/OU7IE3+EoTx5JwS3de+ZH5ykRqmdhEuqf/xliePDUwM1cb2vw3A1xHEITI6I+\nYxYIkuGnocSznI8Bl6/ZVrQQ0xf+nhcdP3wt1TfvC063ZSI7zNApCcXZnJS1wSVE\nDOfnrggvTnRagxAZLpKUKEz59ddemHQkcNMvhkQ7e0eyh7tC9nNHSZ1tl8B4QzZK\nJNbmSTnfXxdOqZ1lSdt2u7scnj0ULDv0ry9mHFpm6yfaiAmn4mGc9aatagc9xA6e\n/Onw8uDLtPntoqLeCaqvPL/+FrlnQfLRuQm8VOHFnZr6bBsXWNYJ9F8XWLelNZvx\nLA8aCkfV23yHbjhYOIabGzHTIXp2IE/CK240ku/S1WJ351B5swY31AYpCFHG2NxJ\n9Ju1kTQeyFXMWt+uOlHHpjp/YnIJSiA4MyHzgrF80G1xqTQxxN0iYO51RYi3QFA9\njGd255kcN65V0cPMEARG6G83cfbClhFVJlem1A9sKflz1I8DKaZaSTsCq1dDUW3I\n-----END RSA PRIVATE KEY-----\n",
+        "public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzRVI4+jPN5bX08czzzw2\n6yxIv5u2Dqn9M/BPKeO1HH2ndNkyHZNy5b6bfmMUY7IYrZ+jbCO84xxArSRI2+KB\nal7MezVJAdc/rE7MghWu4WA3d3mhwWXgYflX8FyYbKb6hZ1l6Mzfh2Aj9QhLx6ox\nBXgQsP95lSxKHuIbjax09nenXQft4y13ho3bIll8CX/oRAec66FXrZMxOAUuU598\n7DAjnqah/epUaH9cKmQ76dC+txyZCGyQy1cyyIoQKL9+kKBM0HYtKm4PWSC/4b1L\ne4sKT0iQY6ZKAEBqPGhi+S0AdLcq2lYVclVPAeaJumwIkvqCLEPn7TZaSY4gnOX9\ngwIDAQAB\n-----END PUBLIC KEY-----\n"
+    },
+    {
+        "name": "Alicia",
+        "surname": "Benitez",
+        "email": "alibr@email.com",
+        "password": "2afaab16df53d6f78657bf96498e67b88fe26dd23fb646a210770f1dd2127d98",
+        "subjects": [
+            "Mathematics",
+            "Physics",
+            "German"
+        ],
+        "role": "Teacher",
+        "private_key": "-----BEGIN RSA PRIVATE KEY-----\nProc-Type: 4,ENCRYPTED\nDEK-Info: AES-256-CBC,FC824D987DB24CE4DBB3844B8C1C3F1C\n\nE5gTp+015CoAjSiIyIaXgE4Kytl89LNAwKJ5GGAcotq/R5bFRCKhEFJX9EtXg86V\n4n0rm+BQ1Y/BzA/3DfrSbou3T65oIncvPrR8Jsjd0jJys5viDfqm2HTaDee6uaVm\nf8iE6gRvy3nhCI8v8S23YHuopjlImdCZ2B80EHaOckBAQuXtPqjUUXwQ3RrvJw7L\noOFz8OEPzldvxiinomLX5mVyVWzs8wAQ8155NHNe/RW0K/ksht+0wO3N51X3nWiu\nyRhpvtpmh2zCSl1oXRy7jwgjsuSmYwExELDW8gYi7oUGZhDxO97q8lh1NwbVZm2u\n/18I3WG2KW2fzHhLWdB5v5mIjGqLbwhdnrZyv3vTMo/9ABCqCF5k0AHmB+HbrNYl\nlWrNcOxnpluMt74qcZgawagcxBQbUlyTUOFLWS3vxmVMhy5QhLlww7udLvLpEipo\ntuvmn4lCiq/0jh/wi9+5RCYeDrnfigqdDoe4BCbmmV5Gbz4xXwUMhSfg0U9Lj8KP\nKRx9CSSFeljRh6uyRmdKybAUzxQpqS9K9o0TYJMUoS3vaofEhK2p/33FGv6+GFlM\nOZf4+xhQKCpElb3Ez1kHngUDQ/0e9C7u+wbSttXdkJyYD/5/hE4tuujy0F3iYoIZ\nmRwreqhiWb7ZcwqauguhxPpdvDYKQv8IIhyTmwYBa8/0VP4Uwtpv83Kym9Wh0y/i\ndPK6FpSdO/bFDc1bEakZEKWP9bRNNUCn5sJR5e39XdAvknm0NbOkwpd8GDFF3FlF\nhnqihYpCrKvpPR4i0lHA8+1bhAXygttiUoDf1KSrYNeeVc2Qu+duRAebFycDa2uY\nNbKbCgVdGtiP0NR9XPF24c3enqkiKiFDnO5SdyqQYVq7G7u0vaVnsLVidaJ/yIy/\n/keUFMAYIzoW4FmdpqpWPAKFSG/mYhdKmQjLi/51dZwJ+U/Cuz9Otpn3zPeRP6GO\nKaXH0xrJ+pcH+dPPKN5J1WD+8OMwfvAG25AlU7HobGmRYjOoRALmdbUpTWh65TSO\nL98lpygWqC6gKEjlkJre5WU57ZEtSOHNsF/wmbqCxoxqfjT6IQf8W3mVSqmSkReK\n5MPokxsTGHL9JJYGnjhQu+71jDhI6wkAC8yT5F9yRR6g7Egik8zIqt15iUuysIQ7\nOb9zNAhN2iELLWrHghpZdfCR9aDu83APAv5URYtkUTT458lXOpcwMbIlJ8b4wVNC\n6jejUgYfXvuzG44sVsyKNIuiRCpfdQOHpZ15h0pugPUIniZ8TLAwxID6i7XA1est\nBkGQ99tphTE1YkGuHnGDVxMk4vGYTGMfeXKOVCwsZYH3lxOpyk3E604q06rREq3p\nL81lCsX+mEI2HxKP8/cQRKMrCyLdXrodAwLhzRHJP+YfhASvRfvrghPLLs4M3MTy\nckYualz1BH/za8rWat/zlNfkTyaVTNfiPLiRi+s5HkbM0WuPVK0tLh+Id91phDGp\nQsPahumWX/9LjnEZKNEr9WGVLHQ01DkllO6v+k1P0v/9h9AaDfofzWljBOYX1cWw\nziG/TqW7+wYD9NtN8hj/OB0e1uTqiuUKt8X99Qc7nofdjYUrnzDObPtyz4SR1xa8\n-----END RSA PRIVATE KEY-----\n",
+        "public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA92+5GQ0Cuo5oRinhQK+K\nDEMVnWVhE+9Hcjhg37ZoaSiT6No1gCeEDqL/CSkouyLtA13DuIV8uM9YOxmk3+ws\n/6UaRarTf7Lie5kyRGCEN7GG0wNJKKawS2MbDogItw+AB+J44qMBOlMOPRKqV4oY\nMo89rx7tOdFfxxxXI/kuxBfj5JzDb2T4rxKxi1wDGuFmQz9Zi0zzplyYMpwhvLBk\nuCz7C/yWY5R+LrDgAMuhzZY0raNiXd2ktxlWDZGjoKK+jebYHG7/ae2N4sQa0jHt\nZENnzeHLaNhigbLeJCOv4gHeexXt/KNDO0S+5tUNzXmLftbw61ds8L8i0QohDo7p\n/QIDAQAB\n-----END PUBLIC KEY-----\n"
+    }
+]
