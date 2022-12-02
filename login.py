@@ -9,13 +9,6 @@ class Login:
         self._password = password
         self._data = []
         self.role = role
-        self.load_data()
-        
-    def load_data(self):
-        if self.role == 'Student':
-            return JsonManager("database/students_database.json").data
-        else:
-            return JsonManager("database/teachers_database.json").data
 
     def login(self):
         """Log a user in the system"""

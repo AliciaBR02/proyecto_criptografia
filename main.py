@@ -24,7 +24,6 @@ def sign_up_st():
     email = email_enter.get()
     password = password_enter.get()
     subjects_selected = []
-    role = "Student"
     # Get selected subjects
     selected_indices = subjects.curselection()
     subjects_selected = [str(subjects.get(i)) for i in selected_indices]
@@ -45,7 +44,6 @@ def sign_up_teacher():
     email = email_enter.get()
     password = password_enter.get()
     subjects_selected = []
-    role = "Teacher"
     # Get selected subjects
     selected_indices = subjects.curselection()
     subjects_selected = [str(subjects.get(i)) for i in selected_indices]
@@ -126,35 +124,14 @@ def upload_marks():
     password = password_teacher_to_upload_enter.get()
     email_student = email_student_to_upload_enter.get()
     subject = subjects_upload.get(subjects_upload.curselection())
-    exam = exam_enter.get()
-    mark = mark_enter.get()
+
     # Check that user is logged in
     l = Login(email, password, role).login()
     if (l == "User logged in successfully"):
         # Add mark
         mark_manager = MarksManager()
-        result = mark_manager.add_mark(email, password, email_student, subject, exam, int(mark))
-        messagebox.showinfo("Marks", result)
-    else:        
-        messagebox.showinfo("Error", "Incorrect data")
-
-# Buscar nota
-def page_search():
-    """Search marks window"""
-    window_search.pack()
-    
-def search():
-    """Search marks function"""
-    email = email_enter.get()
-    password = password_enter.get()
-    # email_student = email_student_enter.get()
-    subject = subject_enter.get(subject_enter.curselection())
-    # Check that user is logged in
-    l = Login(email, password, role).login()
-    if (l == "User logged in successfully"):
-        # Show marks
-        mark_manager = MarksManager()
-        result = mark_manager.get_marks(email, password, email_student, subject)
+        result = mark_manager.write_marks(email, password, email_student, subject)
+        mark_manager.sign_marks(email, password, email_student, subject)
         marks_result = ''
         if len(result) != 0:
             marks_result =  "Student: " + email_student  
@@ -165,6 +142,34 @@ def search():
         messagebox.showinfo("Marks", marks_result)
     else:        
         messagebox.showinfo("Error", "Incorrect data")
+
+# # Buscar nota
+# def page_search():
+#     """Search marks window"""
+#     window_search.pack()
+    
+# def search():
+#     """Search marks function"""
+#     email = email_enter.get()
+#     password = password_enter.get()
+#     # email_student = email_student_enter.get()
+#     subject = subject_enter.get(subject_enter.curselection())
+#     # Check that user is logged in
+#     l = Login(email, password, role).login()
+#     if (l == "User logged in successfully"):
+#         # Show marks
+#         mark_manager = MarksManager()
+#         result = mark_manager.get_marks(email, password, email_student, subject)
+#         marks_result = ''
+#         if len(result) != 0:
+#             marks_result =  "Student: " + email_student  
+#             for i in result:
+#                 marks_result += "\n" + i["subject"] + "->" + i["exam"] + ": " + str(i["mark"]) + "\n\n"
+#         else:
+#             marks_result = "No marks available"
+#         messagebox.showinfo("Marks", marks_result)
+#     else:        
+#         messagebox.showinfo("Error", "Incorrect data")
 
 # -------------------- MAIN ----------------------
 
@@ -293,9 +298,9 @@ Label(window_student, text="Welcome").pack()
 
 Label(window_student, text="").pack()
 
-# Select between add mark and search marks
-Button(window_student, text="Search", height="2", width="20", bg=accept_color, command=page_search).pack()
-# Button(window_student, text = 'Add mark', height="2", width="20", bg=accept_color, command=add_nota).pack()
+# # Select between add mark and search marks
+# Button(window_student, text="Search", height="2", width="20", bg=accept_color, command=page_search).pack()
+# # Button(window_student, text = 'Add mark', height="2", width="20", bg=accept_color, command=add_nota).pack()
 
 # --------------------- TEACHER ----------------------
 global window_teacher
@@ -311,30 +316,30 @@ Label(window_teacher, text="").pack()
 Button(window_teacher, text="Add mark", height="2", width="20", bg=accept_color, command=add_nota).pack()
 Button(window_teacher, text = 'Upload marks', height="2", width="20", bg=accept_color, command=upload_mark).pack()
 
-#--------------------- SEARCH ----------------------
-# Create search window
-global window_search
-window_search = Frame(window_principal)
-window_search.config(width=300, height=250)
+# #--------------------- SEARCH ----------------------
+# # Create search window
+# global window_search
+# window_search = Frame(window_principal)
+# window_search.config(width=300, height=250)
 
-Label(window_search, text="For security reasons, enter your email and password again, please").pack()
-Label(window_search, text="").pack()
+# Label(window_search, text="For security reasons, enter your email and password again, please").pack()
+# Label(window_search, text="").pack()
 
-# Enter email and password for security reasons
-etiqueta_email = Label(window_search, text="Email * ")
-etiqueta_email.pack()
-email_enter = Entry(window_search, textvariable=email)
-email_enter.pack()
-etiqueta_password = Label(window_search, text="Password * ")
-etiqueta_password.pack()
-password_enter = Entry(window_search, textvariable=password, show='*')
-password_enter.pack()
-subject_enter = Listbox(window_search, selectmode=SINGLE)
+# # Enter email and password for security reasons
+# etiqueta_email = Label(window_search, text="Email * ")
+# etiqueta_email.pack()
+# email_enter = Entry(window_search, textvariable=email)
+# email_enter.pack()
+# etiqueta_password = Label(window_search, text="Password * ")
+# etiqueta_password.pack()
+# password_enter = Entry(window_search, textvariable=password, show='*')
+# password_enter.pack()
+# subject_enter = Listbox(window_search, selectmode=SINGLE)
 
-Label(window_search, text="").pack()
+# Label(window_search, text="").pack()
 
-# Search button
-Button(window_search, text = 'Search', height="2", width="20", bg=accept_color, command=search).pack()
+# # Search button
+# Button(window_search, text = 'Search', height="2", width="20", bg=accept_color, command=search).pack()
 
 
 
@@ -405,7 +410,7 @@ subjects_upload = Listbox(window_upload_mark, selectmode=SINGLE)
 
 # list of subjects
 for i in lists_subjects:
-    subjects_mark.insert(END, i)
+    subjects_upload.insert(END, i)
 
 # Add mark form
 Label(window_upload_mark, text="Please enter the mark below").pack()
@@ -421,16 +426,6 @@ email_student_to_upload_exam = Label(window_upload_mark, text="Student * ")
 email_student_to_upload_exam.pack()
 email_student_to_upload_enter = Entry(window_upload_mark, textvariable=email_student_to_upload)
 email_student_to_upload_enter.pack()
-
-etiqueta_exam = Label(window_upload_mark, text="Exam * ")
-etiqueta_exam.pack()
-exam_enter = Entry(window_upload_mark, textvariable=exam)
-exam_enter.pack()
-
-etiqueta_mark = Label(window_upload_mark, text="Mark * ")
-etiqueta_mark.pack()
-mark_enter = Entry(window_upload_mark, textvariable=mark)
-mark_enter.pack()
 
 Label(window_upload_mark, text="").pack()
 Label(window_upload_mark, text="Comfirm identity").pack()
@@ -452,7 +447,7 @@ password_teacher_to_upload_enter.pack()
 Label(window_upload_mark, text="").pack()
 
 # Add mark button
-Button(window_upload_mark, text = 'Add', height="2", width="20", bg=accept_color, command=upload_mark).pack()
+Button(window_upload_mark, text = 'Upload', height="2", width="20", bg=accept_color, command=upload_marks).pack()
 
 
 
