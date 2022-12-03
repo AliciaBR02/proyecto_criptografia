@@ -1,20 +1,15 @@
-file_name = "database/val@email.com_Mathematics.txt"
-with open(file_name, "rb") as file:
-    data = file.read()[:-256]
-data = data.decode('utf-8')
+from marks import Marks
+import base64
+import sign_verification
 
-marks = []
-data = data.split("[")
 
-data.pop(0)
-data = data[0].split("}]")
 
-data.pop(-1)
-data = data[0].split("},")
+def show_marks(self, email_student,password,  subject):
+        file_name = "database/" + email_student + "_" + subject + ".txt"
+        with open(file_name, "rb") as file:
+            marks = file.read()[:-256]
+        marks = base64.b64decode(marks)
+        marks = self.decrypt_marks(marks, email_student, password)
+        return marks
 
-for mark in data:
-    marks.append(mark + "}")
-
-mark_show = []
-for mark in marks:
-    mark_show.append(mark[(16+len("Mathematics")):-1] )
+print(show_marks(Marks.Marks(), "val@email.com", "1234", "Math"))

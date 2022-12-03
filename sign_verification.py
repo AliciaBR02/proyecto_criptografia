@@ -5,6 +5,7 @@ from cryptography import x509
 from cryptography.x509.oid import NameOID
 import datetime
 import cryptography.hazmat.primitives.serialization as serialization
+import json_manager
 
 class SignVerification:
     def __init__(self):
@@ -81,22 +82,48 @@ class SignVerification:
         ).sign(private_key, hashes.SHA256())
         with open("database/certificates/certificate_"+mail+".pem", "wb") as f:
             f.write(cert.public_bytes(serialization.Encoding.PEM))
-            
+    
+    def encrypt_message(self, message, public_key):
+        return public_key.encrypt(
+            message,
+            padding.OAEP(
+                mgf=padding.MGF1(algorithm=hashes.SHA256()),
+                algorithm=hashes.SHA256(),
+                label=None
+            )
+        )
+    
+    def decrypt_message(self, private_key, message):
+        # print(message)
+        return private_key.decrypt(
+            message,
+            padding.OAEP(
+            mgf=padding.MGF1(algorithm=hashes.SHA256()),
+            algorithm=hashes.SHA256(),
+            label=None
+    )
+)
+    
     def sign_message(self, private_key, input_file):
         # first we copy the message from input_file into a new file input_signed.txt
         with open(input_file, 'r') as file:
             data = file.read()
+            file.close()
         bdata = data.encode('utf-8')
         # now we create the signature from the message and the private key
         signature = self.create_signature(bdata, private_key)
-        with open(input_file[:-4] + ".txt", 'ab') as file:
-            file.write(signature)
+        database = json_manager.JsonManager(input_file)
+        database.add_item(signature)
+        
+        
     
     def verify_signature(self, public_key, input_file):
         # first we read the message from input_file
         try:
-            with open(input_file, 'rb') as file:
+            with open(input_file, 'r') as file:
                 data = file.read()
+                file.close()
+
         except: # no file found
             return "No marks were uploaded"
         # then we read the signature from the end of the file

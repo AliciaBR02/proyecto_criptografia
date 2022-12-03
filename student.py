@@ -25,3 +25,6 @@ class Student:
         # save the data in the student database
         database = json_manager.JsonManager('database/users_database.json')
         database.add_item(self)
+
+st = Student("Val", "Cataldo", "val@email.com", "password", ["Mathematics", "Physics"])
+st.register()

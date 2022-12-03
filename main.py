@@ -142,7 +142,7 @@ def show_marks():
     if (l == "User logged in successfully" and role == "Student"):
         # Add mark
         mark_manager = MarksManager()
-        message = mark_manager.show_marks(teacher, email_st, subject_to_search)
+        message = mark_manager.show_marks(teacher, email_st, password, subject_to_search)
         mark_result = ''
         for mark in message:
             mark_result += str(mark) + '\n'
