@@ -6,6 +6,7 @@ from cryptography.x509.oid import NameOID
 import datetime
 import cryptography.hazmat.primitives.serialization as serialization
 import json_manager
+import json
 
 class SignVerification:
     def __init__(self):
@@ -112,8 +113,8 @@ class SignVerification:
         bdata = data.encode('utf-8')
         # now we create the signature from the message and the private key
         signature = self.create_signature(bdata, private_key)
-        database = json_manager.JsonManager(input_file)
-        database.add_item(signature)
+        # database = json_manager.JsonManager(input_file)
+        return str(signature)
         
         
     

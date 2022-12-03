@@ -13,10 +13,10 @@ class JsonManager:
         with open(self.file, "r", encoding='utf-8', newline="") as f:
             self.data = json.load(f)
         return self.data
-
+        
     def store(self, data):
         """Store the data in the json file"""
-        with open(self.file, "w") as f:
+        with open(self.file, "w", encoding='utf-8') as f:
             json.dump(data, f, indent=4)
     
     def add_item(self, item):
