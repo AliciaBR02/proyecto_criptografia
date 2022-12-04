@@ -143,10 +143,7 @@ def show_marks():
         # Add mark
         mark_manager = MarksManager()
         message = mark_manager.show_marks(teacher, email_st, password, subject_to_search)
-        mark_result = ''
-        for mark in message:
-            mark_result += str(mark) + '\n'
-        messagebox.showinfo("Marks", mark_result)
+        messagebox.showinfo("Marks", message)
     else:        
         messagebox.showinfo("Error", "Incorrect data")
     

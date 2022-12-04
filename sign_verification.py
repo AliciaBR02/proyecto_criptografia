@@ -95,15 +95,14 @@ class SignVerification:
         )
     
     def decrypt_message(self, private_key, message):
-        # print(message)
         return private_key.decrypt(
             message,
             padding.OAEP(
-            mgf=padding.MGF1(algorithm=hashes.SHA256()),
-            algorithm=hashes.SHA256(),
-            label=None
-    )
-)
+                mgf=padding.MGF1(algorithm=hashes.SHA256()),
+                algorithm=hashes.SHA256(),
+                label=None
+            )
+        )
     
     def sign_message(self, private_key, input_file):
         # first we copy the message from input_file into a new file input_signed.txt

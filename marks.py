@@ -98,8 +98,9 @@ class MarksManager:
     def decrypt_marks(self, marks, email_student, password):
         s = SignVerification()
         private_key = self.search_private_key(email_student, password)
-        return s.decrypt_message(private_key, marks).decode('utf-8')
-    
+        print("holis")
+        return base64.b64decode(s.decrypt_message(private_key, marks)).decode('utf-8')
+
     # def write_marks(self, email_teacher, password, email_student, subject):
     #     """Write the marks of the student"""
     #     marks = self.get_marks(email_teacher, password, email_student, subject)
@@ -164,15 +165,14 @@ class MarksManager:
         marks = json_manager.JsonManager(file_name).data
         for mark in marks:
             print((mark['mark']))
-            mark['mark'] = self.decrypt_marks(base64.b64encode(mark['mark'].encode('utf-8')), email_student, password)
+            mark['mark'] = self.decrypt_marks(base64.b64decode(mark['mark'].encode('utf-8')), email_student, password)
         
+        marks_shown = ""
+        for mark in marks:
+            marks_shown += mark["exam"] + ": " + mark["mark"] + "\n"
         # marks = base64.b64decode(marks)
         # print(len(marks))
         # marks = self.decrypt_marks(marks[:-1], email_student, password)
-        return marks
+        return marks_shown
     
 marks = MarksManager()
-(marks.add_mark("alibr@email.com", "Alibrum12$", "val@email.com", "Mathematics", "1", 10))
-(marks.sign_marks("alibr@email.com", "Alibrum12$", "val@email.com", "Mathematics"))
-print(marks.show_marks("alibr@email.com", "val@email.com", "password", "Mathematics"))
-
