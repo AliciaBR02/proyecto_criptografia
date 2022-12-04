@@ -50,26 +50,3 @@ class Registration:
         elif self.role == "Teacher":
             Teacher(self.name, self.surname, self.email, self.password, self.subjects_list).register()
         return "You have been registered successfully"
-
-    # def register_teacher(self):
-    #     """register the teacher in the database"""
-    #     data = JsonManager("database/users_database.json").data
-    #     # check if the email is already registered
-    #     for i in range(len(data)):
-    #         if self.email == data[i]["email"]:
-    #             return "The email is already registered"
-    #     # if not registered, register the student
-    #     # check that all the attributes are valid one by one
-    #     if self.name == "name is not valid":
-    #         return "name is not valid"
-    #     if self.surname == "surname is not valid":
-    #         return "surname is not valid"
-    #     if self.email == "email is not valid":
-    #         return "Invalid email"
-    #     if self.password == "password is not valid":
-    #         return "Invalid password"
-    #     if self.subjects_list == []:
-    #         return "Invalid subjects"
-    #     t = Teacher(self.name, self.surname, self.email, self.password, self.subjects_list)
-    #     t.register()
-    #     return "You have been registered successfully"

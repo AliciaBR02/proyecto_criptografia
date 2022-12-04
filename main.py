@@ -62,7 +62,6 @@ def login_function():
     mail = email_enter.get()
     password = password_enter.get()
     # Login user
-    # role = "Student"
     l, role = Login(mail, password).login()
     messagebox.showinfo("Log In", l)
     if l == "User logged in successfully" and role == "Student":
@@ -84,6 +83,8 @@ def login():
 def add_nota():
     """Add mark window"""
     window_add_mark.pack()
+    if window_upload_mark:
+        window_upload_mark.forget()
 
 def add_mark():
     """Add mark function"""
@@ -108,6 +109,8 @@ def add_mark():
 def upload_mark():
     """Upload marks window"""
     window_upload_mark.pack()
+    if window_add_mark:
+        window_add_mark.forget()
     
 def upload_marks():
     """Upload marks function"""
@@ -123,6 +126,7 @@ def upload_marks():
         mark_manager = MarksManager()
         message = mark_manager.sign_marks(email, password, email_student, subject)
         messagebox.showinfo("Marks", message)
+        window_upload_mark.forget()
     else:        
         messagebox.showinfo("Error", "Incorrect data")
 
@@ -220,7 +224,7 @@ password_enter.pack()
 Label(window_login, text="", bg=background_color).pack()
 
 # Log in button
-Button(window_login, text="Log In", width=10, height=1, bg=accept_color, fg='#ffF', command=login_function).pack()
+Button(window_login, text="Log In", width=20, height=2, bg=accept_color, fg='#ffF', command=login_function).pack()
 
 
 
@@ -280,9 +284,8 @@ Label(window_student, text="Welcome", fg='#ffF', bg=background_color).pack()
 
 Label(window_student, text="", bg=background_color).pack()
 
-# # Select between add mark and search marks
+# Select between add mark and search marks
 Button(window_student, text="Search", fg='#ffF', height="2", width="20", bg=accept_color, command=page_search).pack()
-# # Button(window_student, text = 'Add mark', height="2", width="20", bg=accept_color, command=add_nota).pack()
 
 # --------------------- TEACHER ----------------------
 global window_teacher
@@ -420,7 +423,7 @@ subjects_upload = Listbox(window_upload_mark, selectmode=SINGLE)
 for i in lists_subjects:
     subjects_upload.insert(END, i)
 
-# Add mark form
+# Upload mark form
 Label(window_upload_mark, fg='#ffF', bg=background_color, text="Please enter the mark below").pack()
 Label(window_upload_mark, bg=background_color, text="").pack()
 

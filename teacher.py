@@ -25,9 +25,3 @@ class Teacher:
         database = json_manager.JsonManager('database/users_database.json')
         database.add_item(self)
         
-    def generate_private_key(self, password):
-        s = SignVerification()
-        key = s.generate_private_key()
-        # save the key encrypted into a pem file
-        encrypted_key = Encryption(self.email, password).encrypt(key)
-        return encrypted_key

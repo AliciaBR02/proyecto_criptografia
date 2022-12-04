@@ -51,6 +51,7 @@ class SignVerification:
         )
         return pem    
     def create_signature(self, message, private_key):
+        # create the signature
         signature = private_key.sign(
             message,
             padding.PSS(
@@ -62,6 +63,7 @@ class SignVerification:
         return signature
 
     def generate_certificate(self, private_key, mail:str):
+        # generate the certificate
         subject = issuer = x509.Name([ x509.NameAttribute(NameOID.COMMON_NAME, mail) ])
         cert = x509.CertificateBuilder().subject_name(
             subject
@@ -85,6 +87,7 @@ class SignVerification:
             f.write(cert.public_bytes(serialization.Encoding.PEM))
     
     def encrypt_message(self, message, public_key):
+        # Encrypt the message
         return public_key.encrypt(
             message,
             padding.OAEP(
@@ -95,6 +98,7 @@ class SignVerification:
         )
     
     def decrypt_message(self, private_key, message):
+        # Decrypt the message
         return private_key.decrypt(
             message,
             padding.OAEP(
@@ -112,7 +116,6 @@ class SignVerification:
         bdata = data.encode('utf-8')
         # now we create the signature from the message and the private key
         signature = self.create_signature(bdata, private_key)
-        # database = json_manager.JsonManager(input_file)
         return str(signature)
         
         

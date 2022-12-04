@@ -34,7 +34,7 @@ class MarksManager:
     def check_subjects(self, email, subject):
         """Check if the user is registered in the subject"""
         users_data = json_manager.JsonManager("database/users_database.json").data
-    
+        # check if the user is registered in the subject
         for user in users_data:
             if user["email"] == email and subject in user["subjects"]:
                 return True
@@ -46,9 +46,9 @@ class MarksManager:
         student_mark = []
         mark_data = json_manager.JsonManager("database/marks_database.json").data
         #create a json file with the marks of the student
-        # with open("database/" + email_student + "_" + subject + ".json", "w") as f:
-        #     json.dump("[]", f)
-        #     f.close()
+        with open("database/" + email_student + "_" + subject + ".json", "w") as f:
+            json.dump("[]", f)
+            f.close()
 
         for mark in mark_data:
             # decrypt the entered email and look for the marks of the student
@@ -57,65 +57,29 @@ class MarksManager:
                 if email_dec == email_student and mark["subject"] == subject:
                 # if the student is found, decrypt the marks and add them to the list
                     mark_dec = Encryption(email_teacher, password).decrypt(mark["mark"])
-                    print('a')
                     with open("database/" + email_student + "_" + subject + ".json") as f:
                         enc_marks = self.encrypt_marks(mark_dec, email_student)
-                    print('enc_marks', enc_marks)
-                    # print('Mark: ', mark_dec)
-                    # vaina de firma y verificación
-                    # nos van a dar la clave publica del profe, y si está bien, todo chachi
-                    # print(enc_marks.decode('utf-8'))
-                    #add item to the dictionary
-                    print('c')
                     student_marks["exam"] =  mark["exam"]
                     student_marks["mark"] = base64.b64encode(enc_marks).decode('utf-8')
-                    print(student_marks["mark"])
-                    # s = SignVerification()  
-                    # private_key = self.search_private_key(email_teacher, password)
-                    # print('e')
                     student_mark.append(student_marks)
-                    # student_marks["signature"] = s.sign_message(private_key, "database/" + email_student + "_" + subject + ".json")
-                    # print(student_marks)
                     
-                    # with open("database/" + email_student + "_" + subject + ".json", 'w') as f:
-                    #     database = json_manager.JsonManager(f)
-                    #     # database.add_item('[')
-                    #     database.add_item(student_marks) 
-                    #     f.close()
-                    # student_marks.append({"exam": mark["exam"], "mark": str(base64.b64decode(enc_marks))})
-                    # print('apendeado: ', student_marks)
             except:
                 pass
         print(student_mark)
         return student_mark    
     
     def encrypt_marks(self, marks, email_student):
+        # encrypt the marks with the public key of the student
         s = SignVerification()
-        # marks = base64.b64encode(marks.encode('utf-8'))
         public_key = self.search_public_key(email_student)
         return s.encrypt_message( base64.b64encode(marks.encode('utf-8')), public_key)
-    # bytes(x) = x.encode(utf-8)
+
     def decrypt_marks(self, marks, email_student, password):
+        # decrypt the marks with the private key of the student
         s = SignVerification()
         private_key = self.search_private_key(email_student, password)
-        print("holis")
         return base64.b64decode(s.decrypt_message(private_key, marks)).decode('utf-8')
 
-    # def write_marks(self, email_teacher, password, email_student, subject):
-    #     """Write the marks of the student"""
-    #     marks = self.get_marks(email_teacher, password, email_student, subject)
-    #     if len(marks) == 0:
-    #         return "The student has no marks yet"
-        
-        
-    #     # database = json_manager.JsonManager("database/" + email_student + "_" + subject + ".json")
-    #     # database.add_item(marks)
-    #     # file_name = "database/" + email_student + "_" + subject + ".json"
-    #     # database = json_manager.JsonManager(file_name)
-    #     # database.add_item(marks)
-    #     # with open(file_name, "w") as file:
-    #     #     file.write(marks_write)
-    #     return  "Marks written successfully"
 
     def sign_marks(self, email_teacher, password, email_student, subject):
         """Sign the marks of the student"""
@@ -124,10 +88,11 @@ class MarksManager:
             return "The student has no marks yet"
         file_name = "database/" + email_student + "_" + subject + ".json"
         for mark in written:
-                # mark["mark"] = mark["mark"].encode('utf-8')
-                s = SignVerification()
-                private_key = self.search_private_key(email_teacher, password)
-                mark["signature"] = s.sign_message(private_key, file_name)
+            # encrypt the marks with the private key of the teacher
+            s = SignVerification()
+            private_key = self.search_private_key(email_teacher, password)
+            mark["signature"] = s.sign_message(private_key, file_name)
+        # write the marks in the json file
         with open("database/" + email_student + "_" + subject + ".json", 'w') as f:
             json.dump(written, f)
             f.close()
@@ -158,21 +123,15 @@ class MarksManager:
     def show_marks(self, email_teacher, email_student, password,  subject):
         """Show the marks of the student"""
         verification = self.verify_signed_marks(email_teacher, email_student, subject)
+        # check if the marks are signed by the teacher
         if verification == "The signature is not valid" or verification == "No marks were uploaded":
-            # print(verification)
             return "No marks to show"
         file_name = "database/" + email_student + "_" + subject + ".json"
         marks = json_manager.JsonManager(file_name).data
-        for mark in marks:
-            print((mark['mark']))
-            mark['mark'] = self.decrypt_marks(base64.b64decode(mark['mark'].encode('utf-8')), email_student, password)
-        
         marks_shown = ""
         for mark in marks:
+            # decrypt the marks with the private key of the student
+            mark['mark'] = self.decrypt_marks(base64.b64decode(mark['mark'].encode('utf-8')), email_student, password)
             marks_shown += mark["exam"] + ": " + mark["mark"] + "\n"
-        # marks = base64.b64decode(marks)
-        # print(len(marks))
-        # marks = self.decrypt_marks(marks[:-1], email_student, password)
         return marks_shown
     
-marks = MarksManager()
