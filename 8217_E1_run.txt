@@ -9,8 +9,10 @@ Para ejecutar la aplicación, es necesario ejecutar el archivo main.py
 Aunque puedan aparecer errores en encryption.py y password_secure.py, no afectan a la ejecución de la aplicación.
 
 ## 3. Uso
-Primero, se debe crear un usuario. Para ello, se debe introducir el email, nombre, apellidos, contraseña y asignaturas que cursa el alumno.
-Una vez creado el usuario, se puede iniciar sesión con el email y la contraseña en la próxima ejecución.
-Una vez iniciada la sesión, se puede acceder a las distintas funcionalidades de la aplicación:
-    - Añadir una nueva nota: Se debe introducir el email, el nombre de la asignatura, la nota y el examen.
-    - Ver las notas de una asignatura: Se debe introducir el email y la asignatura.
+Primero se tiene que crear un usuario de profesor y otro de alumno. Para ello, se tiene que rellenar el formulario de registro con los datos correspondientes. Una vez registrado, se puede iniciar sesión con el usuario y contraseña creados.
+Iniciada sesión como profesor se presentan 2 opciones:
+        - Add mark: Se tiene que rellenar el formulario con el email del alumno, la asignatura, el examen y la nota que se quiere añadir. Una vez rellenado, se pulsa el botón de añadir nota y se añade la nota al alumno.
+        - Upload marks: Se tiene que rellenar un formulario con el email del alumno y la asignatura. Una vez rellenado, se pulsa el botón de subir notas y se firmarán las notas y se guardarán a la base de datos cifrada para que las vea el alumno.
+
+Iniciada sesión como alumno se presentan 2 opciones:
+        - Show marks: Se tiene que rellenar un formulario con el email del alumno y la asignatura. Una vez rellenado, se pulsa el botón de ver notas y se mostrarán las notas del alumno.
