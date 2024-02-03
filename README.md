@@ -28,7 +28,8 @@ El Administrador de Notas Académicas es un proyecto dedicado a la gestión segu
 
 4. **Explorar Funcionalidades de Criptografía:**
    - Descubra cómo se aplican los algoritmos de cifrado y hash para garantizar la seguridad y privacidad de las notas académicas.
-
+5. **Ejecución:**
+   - Ver archivo 8217_E1_run.txt
 ## Tecnologías Utilizadas
 
 - **Criptografía Simétrica y Asimétrica**
